@@ -7,7 +7,7 @@ on boot
     user root
     oneshot
 
-on fs
+on early-fs
     mkdir /system
     mkdir /data 0771 system system
     mkdir /cache 0770 system cache
@@ -18,13 +18,15 @@ on fs
     mount ext4 /dev/block/mmcblk0p25 /cache wait noatime nosuid nodev data=ordered noauto_da_alloc
     mount ext4 /dev/block/mmcblk0p28 /devlog wait noatime nosuid nodev data=ordered noauto_da_alloc
 
+    devwait /dev/block/mmcblk0p18
 
-# 8x60: mount radio partition and create links for modem/q6 firmwares
-    mkdir /vendor               0771 system system
-    mkdir /vendor/firmware      0771 system system
+on fs
+    rm /vendor
+    #8x60: mount radio partition and create links for modem/q6 firmwares
+    mkdir /vendor 0771 system system
+    mkdir /vendor/firmware 0771 system system
     mkdir /vendor/firmware/misc 0771 system system
-    devwait emmc@radio
-    mount vfat emmc@radio /vendor/firmware/misc ro shortname=lower
+    mount vfat /dev/block/mmcblk0p18 /vendor/firmware/misc ro shortname=lower
     symlink /vendor/firmware/misc/q6.b07 /vendor/firmware/q6.b07
     symlink /vendor/firmware/misc/q6.b06 /vendor/firmware/q6.b06
     symlink /vendor/firmware/misc/q6.b05 /vendor/firmware/q6.b05
@@ -134,7 +136,7 @@ service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-service dhcpcd /system/bin/dhcpcd -ABKL eth0
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL eth0
     disabled
     oneshot
 

@@ -36,8 +36,13 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+BOARD_USES_ADRENO_200 := true
 TARGET_SPECIFIC_HEADER_PATH := device/htc/shooter/include
 
 # Wifi related defines
@@ -77,6 +82,7 @@ BOARD_USE_BROADCOM_FM_VOLUME_HACK := true
 TARGET_BOOTLOADER_BOARD_NAME := shooter
 
 BOARD_USE_NEW_LIBRIL_HTC := true
+TARGET_PROVIDES_LIBRIL := vendor/htc/shooter/proprietary/libril.so
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1
 BOARD_KERNEL_BASE := 0x40400000
@@ -86,8 +92,8 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := shooter
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 BOARD_HAVE_SQN_WIMAX := true
-TARGET_HAVE_HDMI_OUT := true
-TARGET_HARDWARE_3D := true
+#TARGET_HAVE_HDMI_OUT := true
+#TARGET_HARDWARE_3D := true
 
 # cat /proc/emmc
 #dev:        size     erasesize name

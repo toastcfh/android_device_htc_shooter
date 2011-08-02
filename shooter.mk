@@ -21,6 +21,7 @@ PRODUCT_COPY_FILES += \
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
 PRODUCT_COPY_FILES += \
+    device/htc/shooter/init.rc:root/init.rc \
     device/htc/shooter/init.shooter.rc:root/init.shooter.rc \
     device/htc/shooter/ueventd.shooter.rc:root/ueventd.shooter.rc
 
@@ -54,9 +55,7 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
 PRODUCT_PACKAGES += \
-    lights.shooter \
     gps.shooter \
-    sensors.shooter \
     librs_jni \
     gralloc.msm8660 \
     copybit.msm8660 \
