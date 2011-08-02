@@ -43,3 +43,10 @@ dalvik.vm.heapsize=32m
 ro.cdma.voicemail.number = mine
 
 mobiledata.interfaces=rmnet0,eth0,gprs,ppp0,wimax0
+
+# For emmc phone storage
+ro.phone_storage = 0
+
+# Make rmt_storage start at init
+ro.emmc = 1
+
