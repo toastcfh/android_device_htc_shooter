@@ -124,6 +124,7 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
+TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/shooter/recovery-kernAl
 
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
