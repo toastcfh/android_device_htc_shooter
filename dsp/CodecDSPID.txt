@@ -1,0 +1,43 @@
+Header, SHR_soundeffet_2011_0412
+## Group for phone ##
+Phone_Default,/system/etc/soundimage/Sound_Phone_Original.txt
+Phone_Handset_Dualmic,/system/etc/soundimage/Sound_Phone_Original_REC.txt
+Phone_Speaker_Dualmic,/system/etc/soundimage/Sound_Phone_Original_SPK.txt
+Phone_Headset,/system/etc/soundimage/Sound_Phone_Original_HP.txt
+Phone_HAC,/system/etc/soundimage/Sound_Phone_Original_REC.txt
+Phone_TTY,/system/etc/soundimage/Sound_Phone_Original.txt
+
+## Group for playback ## 
+Playback_Default,/system/etc/soundimage/Sound_Original.txt
+Playback_Speaker_Default,/system/etc/soundimage/Sound_Original_SPK.txt
+Playback_Headset_Beats,
+Playback_A_Headset_SRS,
+Playback_A_Speaker_SRS,
+Playback_V_Headset_SRS,
+Playback_V_Speaker_SRS,
+Playback_A_EQ_Bass Booster,
+Playback_A_EQ_Blues,
+Playback_A_EQ_Classical,
+Playback_A_EQ_Country,
+Playback_A_EQ_Jazz,
+Playback_A_EQ_Latin,
+Playback_A_EQ_New age,
+Playback_A_EQ_Piano,
+Playback_A_EQ_Pop,
+Playback_A_EQ_R&B,
+Playback_A_EQ_Rock,
+Playback_A_EQ_Treble Booster,
+Playback_A_EQ_Vocal Booster,
+
+## Group for recording ##
+Record_Default,/system/etc/soundimage/Sound_Original_Recording.txt
+Record_V_Mono,/system/etc/soundimage/Sound_Rec_mono.txt
+Record_V_IMIC_Landscape_Stereo,/system/etc/soundimage/Sound_Rec_Landscape.txt
+Record_V_IMIC_Protrait_Stereo,/system/etc/soundimage/Sound_Rec_Portrait.txt
+Record_A_IMIC_Mono,/system/etc/soundimage/Sound_Rec_Voice_record.txt
+Record_A_EMIC_Mono,/system/etc/soundimage/Sound_Rec_Voice_record.txt
+
+## Group for FM ##
+FM_Headset,/system/etc/soundimage/Sound_FM_HP.txt
+FM_Speaker,/system/etc/soundimage/Sound_FM_SPK.txt
+

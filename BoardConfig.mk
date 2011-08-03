@@ -28,6 +28,8 @@ USE_CAMERA_STUB := true
 # inherit from the proprietary version
 -include vendor/htc/shooter/BoardConfigVendor.mk
 
+TARGET_SPECIFIC_HEADER_PATH := device/htc/shooter/include
+
 TARGET_NO_BOOTLOADER := true
 
 TARGET_BOARD_PLATFORM := msm8660
@@ -43,7 +45,6 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 BOARD_USES_ADRENO_200 := true
-TARGET_SPECIFIC_HEADER_PATH := device/htc/shooter/include
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
@@ -56,7 +57,8 @@ WIFI_DRIVER_MODULE_ARG      := "firmware_path=/vendor/firmware/fw_bcm4329.bin nv
 WIFI_DRIVER_MODULE_NAME     := "bcm4329"
 
 BOARD_USES_GENERIC_AUDIO := false
-BOARD_PREBUILT_LIBAUDIO := true
+BOARD_PREBUILT_LIBAUDIO := false
+TARGET_PROVIDES_LIBAUDIO := true
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -120,7 +122,9 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 5242880
 BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
+
 TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
+
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
