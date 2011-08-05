@@ -6,6 +6,7 @@
 /dev/kgsl-3d0           0666    root        root
 /dev/msm_rotator        0660    system      graphics
 /dev/gemini0            0660    system      system
+/dev/msm_camera/*       0660    system      system
 
 # sensors
 /dev/akm8975_daemon     0640    compass     system
@@ -27,6 +28,7 @@
 /dev/adsp               0660    system      audio
 /dev/pmem_audio	        0660    system      audio
 /dev/tpa2051d3	        0660    system      audio
+/dev/pmem_smipool       0660    system      audio
 
 # CDMA radio interface MUX
 /dev/ppp                  0660   radio      vpn
