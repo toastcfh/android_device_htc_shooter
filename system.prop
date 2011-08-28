@@ -4,6 +4,11 @@
 
 debug.fb.rgb565 = 0
 
+The debug.sf.hw = 0
+
+#C2D
+debug.composition.type = c2d
+
 rild.libpath=/system/lib/libhtc_ril.so
 ro.telephony.default_network = 4
 gsm.sim.operator.alpha = sprint
