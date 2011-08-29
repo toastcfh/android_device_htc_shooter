@@ -68,10 +68,15 @@ on fs
     chown system system /dev/timerirq
 
     mkdir /data/radio 0770 radio radio
+
+    #wifi
+    mkdir /data/misc 1771 system misc
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
+
+    #wimax
     mkdir /data/misc/wimax 0770 wimax wimax
     mkdir /data/misc/wimax/sockets 0770  wimax wimax
     mkdir /data/wimax/ 0770  system system
@@ -81,6 +86,12 @@ on fs
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660                /sys/class/rfkill/rfkill0/state
+
+    # bluetooth MAC address programming
+    chown bluetooth bluetooth /sys/module/board_shooter/parameters/bdaddr
+    setprop ro.bt.bdaddr_path /sys/module/board_shooter/parameters/bdaddr
+    # bluetooth car dock pin
+    chown system system /sys/class/switch/dock/bt_pin
 
 	# for wireless modem
 	chown system system /sys/module/serial/parameters/modem_enabled
@@ -155,11 +166,6 @@ service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
     oneshot
     keycodes 114 115
 
-#service hciattach /system/bin/brcm_patchram_plus --enable_hci --patchram /etc/firmware/bcm4329.hcd /dev/ttyHS0
-#    user bluetooth
-#    group bluetooth net_bt_admin
-#    disabled
-
 # Make sure we startup btld before hcid
 # Set target address to emulator host loopback IF
 # Limit baudrate to 460800 to ensure reliable uart operation
@@ -169,6 +175,22 @@ service btld /system/bin/logwrapper /system/bin/btld -lpm 1 -hb 3000000
     group bluetooth net_bt_admin
     disabled
     oneshot
+
+service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
+    --baudrate 3000000 --patchram /etc/firmware/bcm4329.hcd /dev/ttyHS0
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+
+# Make sure we startup btld before hcid
+# Set target address to emulator host loopback IF
+# Limit baudrate to 460800 to ensure reliable uart operation
+#service btld /system/bin/logwrapper /system/bin/btld -hwtun 10.0.2.2 -hb 460800 3000000 -lpm 1
+#service btld /system/bin/logwrapper /system/bin/btld -lpm 1 -hb 3000000
+#    user root
+#    group bluetooth net_bt_admin
+#    disabled
+#    oneshot
 
 # for USB internet sharing
 service udhcpd /system/bin/udhcpd
