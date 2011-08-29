@@ -32,9 +32,6 @@ adb pull /system/lib/egl/libEGL_adreno200.so ../../../vendor/htc/$DEVICE/proprie
 adb pull /system/lib/egl/libGLESv1_CM_adreno200.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/egl/libGLESv2_adreno200.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/egl/libq3dtools_adreno200.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libOmxCore.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libOmxVdec.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libOmxVenc.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libaudioalsa.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libcamera.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libcamera_client.so ../../../vendor/htc/$DEVICE/proprietary
@@ -140,9 +137,6 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libmllite.so:/system/lib/libmllite.so \\
     vendor/htc/__DEVICE__/proprietary/libmlplatform.so:/system/lib/libmlplatform.so \\
     vendor/htc/__DEVICE__/proprietary/libnetmgr.so:/system/lib/libnetmgr.so \\
-    vendor/htc/__DEVICE__/proprietary/libOmxCore.so:/system/lib/libOmxCore.so \\
-    vendor/htc/__DEVICE__/proprietary/libOmxVdec.so:/system/lib/libOmxVdec.so \\
-    vendor/htc/__DEVICE__/proprietary/libOmxVenc.so:/system/lib/llibOmxVenc.so \\
     vendor/htc/__DEVICE__/proprietary/liboemcamera.so:/system/lib/liboemcamera.so \\
     vendor/htc/__DEVICE__/proprietary/libposteffect.so:/system/lib/libposteffect.so \\
     vendor/htc/__DEVICE__/proprietary/libqmi.so:/system/lib/libqmi.so \\

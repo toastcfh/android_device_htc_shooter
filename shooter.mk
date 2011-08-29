@@ -60,6 +60,10 @@ PRODUCT_PACKAGES += \
     gralloc.msm8660 \
     copybit.msm8660 \
     overlay.default \
+    libOmxCore \
+    libOmxVenc \
+    libOmxVdec \
+    liboverlay \
     com.android.future.usb.accessory \
     libaudio
 
@@ -103,11 +107,10 @@ PRODUCT_COPY_FILES += \
 
 # Firmware
 PRODUCT_COPY_FILES += \
-    device/htc/shooter/firmware/bcm_mfg.bin:system/etc/firmware/bcm_mfg.bin \
     device/htc/shooter/firmware/BCM4329B1_002.002.023.0589.0632.hcd:system/etc/firmware/BCM4329B1_002.002.023.0589.0632.hcd \
     device/htc/shooter/firmware/default_bak.acdb:system/etc/firmware/default_bak.acdb \
-    device/htc/shooter/firmware/fw_bcm4329.bin:system/vendor/firmware/fw_bcm4329.bin \
-    device/htc/shooter/firmware/fw_bcm4329_apsta.bin:system/vendor/firmware/fw_bcm4329_apsta.bin \
+    device/htc/shooter/firmware/fw_bcm4329.bin:system/etc/firmware/fw_bcm4329.bin \
+    device/htc/shooter/firmware/fw_bcm4329_apsta.bin:system/etc/firmware/fw_bcm4329_apsta.bin \
     device/htc/shooter/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
     device/htc/shooter/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
     device/htc/shooter/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw 
