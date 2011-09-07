@@ -150,41 +150,41 @@ public:
     /**
      * Stop a previously started preview.
      */
-    virtual void        stopPreview() = 0;
+    virtual void        stopPreview() = 0; // 0x38 + 0x34
 
     /**
      * Returns true if preview is enabled.
      */
-    virtual bool        previewEnabled() = 0;
+    virtual bool        previewEnabled() = 0; // 0x38 + 0x38
 
     /**
      * Start record mode. When a record image is available a CAMERA_MSG_VIDEO_FRAME
      * message is sent with the corresponding frame. Every record frame must be released
      * by calling releaseRecordingFrame().
      */
-    virtual status_t    startRecording() = 0;
+    virtual status_t    startRecording() = 0; // 0x38 + 0x3C
 
     /**
      * Stop a previously started recording.
      */
-    virtual void        stopRecording() = 0;
+    virtual void        stopRecording() = 0; // 0x38 + 0x40
 
     /**
      * Returns true if recording is enabled.
      */
-    virtual bool        recordingEnabled() = 0;
+    virtual bool        recordingEnabled() = 0; // 0x38 + 0x44
 
     /**
      * Release a record frame previously returned by CAMERA_MSG_VIDEO_FRAME.
      */
-    virtual void        releaseRecordingFrame(const sp<IMemory>& mem) = 0;
+    virtual void        releaseRecordingFrame(const sp<IMemory>& mem) = 0; // 0x38 + 0x48
 
     /**
      * Start auto focus, the notification callback routine is called
      * with CAMERA_MSG_FOCUS once when focusing is complete. autoFocus()
      * will be called again if another auto focus is needed.
      */
-    virtual status_t    autoFocus() = 0;
+    virtual status_t    autoFocus() = 0; // 0x38 + 0x4C
 
     /**
      * Cancels auto-focus function. If the auto-focus is still in progress,
@@ -192,42 +192,47 @@ public:
      * or not, this function will return the focus position to the default.
      * If the camera does not support auto-focus, this is a no-op.
      */
-    virtual status_t    cancelAutoFocus() = 0;
+    virtual status_t    cancelAutoFocus() = 0; // 0x38 + 0x50
 
     /**
      * Take a picture.
      */
-    virtual status_t    takePicture() = 0;
+    virtual status_t    takePicture() = 0; // 0x38 + 0x54
 
     /**
      * Cancel a picture that was started with takePicture.  Calling this
      * method when no picture is being taken is a no-op.
      */
-    virtual status_t    cancelPicture() = 0;
+    virtual status_t    cancelPicture() = 0; // 0x38 + 0x58
 
     /**
      * Set the camera parameters. This returns BAD_VALUE if any parameter is
      * invalid or not supported. */
-    virtual status_t    setParameters(const CameraParameters& params) = 0;
+    virtual status_t    setParameters(const CameraParameters& params) = 0; // 0x38 + 0x5C
 
     /** Return the camera parameters. */
-    virtual CameraParameters  getParameters() const = 0;
+    virtual CameraParameters  getParameters() const = 0; // 0x38 + 0x60
+
+    /**
+     * Unknown function
+     */
+    virtual void ohHaiDeferThanksForFixingOurCam(); // 0x38 + 0x64
 
     /**
      * Send command to camera driver.
      */
-    virtual status_t sendCommand(int32_t cmd, int32_t arg1, int32_t arg2) = 0;
+    virtual status_t sendCommand(int32_t cmd, int32_t arg1, int32_t arg2) = 0; // 0x38 + 0x68
 
     /**
      * Release the hardware resources owned by this object.  Note that this is
      * *not* done in the destructor.
      */
-    virtual void release() = 0;
+    virtual void release() = 0; // 0x38 + 0x6C
 
     /**
      * Dump state of the camera hardware
      */
-    virtual status_t dump(int fd, const Vector<String16>& args) const = 0;
+    virtual status_t dump(int fd, const Vector<String16>& args) const = 0; // 0x38 + 0x70
 
 };
 
