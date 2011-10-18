@@ -88,10 +88,26 @@ on fs
     chmod 0660                /sys/class/rfkill/rfkill0/state
 
     # bluetooth MAC address programming
-    chown bluetooth bluetooth /sys/module/board_shooter/parameters/bdaddr
-    setprop ro.bt.bdaddr_path /sys/module/board_shooter/parameters/bdaddr
-    # bluetooth car dock pin
-    chown system system /sys/class/switch/dock/bt_pin
+    chown bluetooth bluetooth /sys/module/htc_bdaddress/parameters/bdaddr
+    setprop ro.bt.bdaddr_path /sys/module/htc_bdaddress/parameters/bdaddr
+
+    # Permissions for Liblights.
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/amber/brightness
+    chown system system /sys/class/leds/amber/blink
+    chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/lcd-backlight/brightness
+
+    # flashlight
+    chown system camera /sys/class/leds/flashlight/brightness
+    chmod 0660          /sys/class/leds/flashlight/brightness
+
+    # for display
+    chown system system /sys/devices/virtual/graphics/fb1/format_3d 
+    chmod 0644		/sys/devices/virtual/graphics/fb1/format_3d 
+    chown system system	/sys/devices/platform/panel_3d/3D_mode
+    chmod 0644		/sys/devices/platform/panel_3d/3D_mode
 
 	# for wireless modem
 	chown system system /sys/module/serial/parameters/modem_enabled
@@ -166,31 +182,21 @@ service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
     oneshot
     keycodes 114 115
 
-# Make sure we startup btld before hcid
-# Set target address to emulator host loopback IF
-# Limit baudrate to 460800 to ensure reliable uart operation
-#service btld /system/bin/logwrapper /system/bin/btld -hwtun 10.0.2.2 -hb 460800 3000000 -lpm 1
-service btld /system/bin/logwrapper /system/bin/btld -lpm 1 -hb 3000000
-    user root
+service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus --enable_hci --baudrate 3000000 --patchram /etc/firmware/BCM4329B1_002.002.023.0589.0632.hcd /dev/ttyHS0
+    user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 
-service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
-    --baudrate 3000000 --patchram /etc/firmware/bcm4329.hcd /dev/ttyHS0
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-
 # Make sure we startup btld before hcid
 # Set target address to emulator host loopback IF
 # Limit baudrate to 460800 to ensure reliable uart operation
 #service btld /system/bin/logwrapper /system/bin/btld -hwtun 10.0.2.2 -hb 460800 3000000 -lpm 1
-#service btld /system/bin/logwrapper /system/bin/btld -lpm 1 -hb 3000000
-#    user root
-#    group bluetooth net_bt_admin
-#    disabled
-#    oneshot
+service btld /system/bin/logwrapper /system/bin/btld -hb 3000000
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
 
 # for USB internet sharing
 service udhcpd /system/bin/udhcpd
@@ -313,19 +319,19 @@ service dmagent /system/bin/dmagent -N -P19 -VSY
     group radio cache inet misc
 
 # HTC IPC server
-service htcipcd /system/bin/htcipcd
-    user root
-    group root system
+#service htcipcd /system/bin/htcipcd
+#    user root
+#    group root system
 
 # CIQ backend daemon
-service iqd /system/bin/iqd
-    user root
-    group root system
+#service iqd /system/bin/iqd
+#    user root
+#    group root system
 
 # CIQ frontend daemon
-service iqfd /system/bin/iqfd
-    user root
-    group root system
+#service iqfd /system/bin/iqfd
+#    user root
+#    group root system
 
 service srv_ser2net /system/bin/ser2net -n
     disabled
@@ -353,14 +359,6 @@ service hdmid /system/bin/hdmid
 service htcbatt /system/bin/htcbatt
     user root
 
-service dcvs0 /system/bin/dcvs --cpu=0 --slacktime=16
-    user root
-    disabled
-
-service dcvs1 /system/bin/dcvs --cpu=1 --slacktime=16
-    user root
-    disabled
-
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     user root
     disabled
@@ -373,11 +371,13 @@ service htc_ebdlogd /system/bin/htc_ebdlogd -s -k -P 7
 	user root
     	disabled
 	oneshot
+        ioprio idle 0
 
 service htc_ebdlogd_rel /system/bin/htc_ebdlogd -s -k
 	user root
     	disabled
 	oneshot
+        ioprio idle 0
 
 service 3d_camera /system/bin/3D_calibration
     user root
