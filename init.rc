@@ -192,6 +192,10 @@ on post-fs
     chown root root /cache/lost+found
     chmod 0770 /cache/lost+found
 
+    # HTC add: double check the perms of /data/data for already existed case
+    chown system system /data/data
+    chmod 0771 /data/data
+
     # allow net_raw to have access to /dev/socket directory
     chown root net_raw /dev/socket
     chmod 0775 /dev/socket
@@ -263,26 +267,39 @@ on boot
     chown radio system /sys/power/state
     chown radio system /sys/power/wake_lock
     chown radio system /sys/power/wake_unlock
+    chown radio system /sys/module/gpio_event/parameters/phone_call_status
+    chmod 0444 /sys/android_camera/fps_mode
+    chmod 0660 /sys/android_camera2/htcwc
+    chown media system /sys/android_camera2/htcwc
+    chown media system /sys/android_camera/cam3Dmode
+    chown radio system /sys/camera_led_status/led_ril_status
+    chown system system /sys/camera_led_status/led_wimax_status
+    chown system system /sys/camera_led_status/led_hotspot_status
+    chown media system /sys/android_camera/cam_mode    
+    chown radio system /sys/class/cap_sense/sar/sleep
     chmod 0660 /sys/power/state
     chmod 0660 /sys/power/wake_lock
     chmod 0660 /sys/power/wake_unlock
+    chown system system /sys/camera_led_status/led_hotspot_status
     chown system system /sys/class/timed_output/vibrator/enable
+    chown system system /sys/class/leds/flashlight/brightness
     chown system system /sys/class/leds/keyboard-backlight/brightness
     chown system system /sys/class/leds/lcd-backlight/brightness
     chown system system /sys/class/leds/button-backlight/brightness
     chown system system /sys/class/leds/jogball-backlight/brightness
+    chown system system /sys/class/leds/caps/brightness
+    chown system system /sys/class/leds/func/brightness
     chown system system /sys/class/leds/red/brightness
     chown system system /sys/class/leds/green/brightness
     chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/amber/brightness
     chown system system /sys/class/leds/red/device/grpfreq
     chown system system /sys/class/leds/red/device/grppwm
     chown system system /sys/class/leds/red/device/blink
-    chown system system /sys/class/leds/red/brightness
-    chown system system /sys/class/leds/green/brightness
-    chown system system /sys/class/leds/blue/brightness
-    chown system system /sys/class/leds/red/device/grpfreq
-    chown system system /sys/class/leds/red/device/grppwm
-    chown system system /sys/class/leds/red/device/blink
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/green/off_timer
+    chown system system /sys/class/leds/amber/blink
+    chown system system /sys/class/leds/amber/off_timer
     chown system system /sys/class/timed_output/vibrator/enable
     chown system system /sys/module/sco/parameters/disable_esco
     chown system system /sys/kernel/ipv4/tcp_wmem_min
@@ -292,14 +309,85 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_def
     chown system system /sys/kernel/ipv4/tcp_rmem_max
     chown root radio /proc/cmdline
+    # HTC UI - BEGIN
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/red/off_timer
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/blue/off_timer
+    chown system system /sys/class/leds/button-backlight-portrait/brightness
+    chown system system /sys/class/leds/button-backlight-landscape/brightness
+    chown system system /sys/class/leds/amber-portrait/brightness
+    chown system system /sys/class/leds/green-portrait/brightness
+    chown system system /sys/class/leds/blue-portrait/brightness
+    chown system system /sys/class/leds/amber-landscape/brightness
+    chown system system /sys/class/leds/green-landscape/brightness
+    chown system system /sys/class/leds/blue-landscape/brightness
+    chown system system /sys/class/leds/sharekey/brightness
+    chown system system /sys/class/leds/sharekey/breath_times
+    chown media media /sys/class/leds/green-camera/brightness
+    chown system system /sys/devices/virtual/htc_accessory/fm/flag
+    chown system system /sys/devices/virtual/htc_accessory/tty/flag
+    # HTC UI - END
+    # bluetooth update FM status to keypad
+    chown bluetooth bluetooth /sys/devices/platform/gpio-event.0/fm_radio
+
+#set radio_feedback permissions
+    chown radio radio /dev/radio_feedback
+    chmod 0660 /dev/radio_feedback
+    chown radio radio /dev/sdiotty0
+    chmod 0660 /dev/sdiotty0
+
+#set G-Sensor and Compass permissions
+    chown compass system /dev/akm8976_aot
+    chown compass system /dev/akm8976_daemon
+    chown compass system /dev/akm8973_aot
+    chown compass system /dev/akm8973_daemon
+    chown compass system /dev/akm8975_aot
+    chown compass system /dev/akm8975_daemon
+    chown compass system /dev/bma150
+    chmod 0640 /dev/akm8976_aot
+    chmod 0640 /dev/akm8976_daemon   
+    chmod 0640 /dev/akm8973_aot
+    chmod 0640 /dev/akm8973_daemon   
+    chmod 0640 /dev/akm8975_aot
+    chmod 0640 /dev/akm8975_daemon    
+    chmod 0640 /dev/bma150  
+
+#set ntrig touch permissions
+    chown system system dev/ntrig_touch
+    chmod 0666 dev/ntrig_touch
+
+#set atmel touch permissions
+    chown system system /sys/android_touch/unlock
+
+#set diag permissions
+    chown radio radio /dev/diag
+    chown radio radio /dev/diag_mdm
+    chown radio radio /dev/htcdiag
+    chown radio radio /dev/diag_arm9
+    chown radio radio /dev/btdiag
+    chmod 0660 /dev/diag
+    chmod 0660 /dev/diag_mdm
+    chmod 0660 /dev/htcdiag
+    chmod 0660 /dev/diag_arm9
+    chmod 0660 /dev/btdiag
 
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
     setprop net.tcp.buffersize.wifi    4095,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
-    setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
+    setprop net.tcp.buffersize.hsdpa   4094,87380,393216,4096,16384,110208
+    setprop net.tcp.buffersize.umts    4094,87380,393216,4096,16384,110208
+    setprop net.tcp.buffersize.edge    4093,26280,393216,4096,16384,35040
+    setprop net.tcp.buffersize.gprs    4092,8760,393216,4096,8760,11680
+    setprop net.tcp.buffersize.lte     4094,87380,196608,4096,16384,196608
+    setprop net.tcp.buffersize.evdo_b  4094,87380,262144,4096,16384,262144
+    setprop net.tcp.buffersize.wimax   4096,221184,524288,4096,16384,110208
+
+    # Assign TCP buffer thresholds to be ceiling value of technology maximums
+    # Increased technology maximums should be reflected here.
+    write /proc/sys/net/core/rmem_max  262144
+    write /proc/sys/net/core/wmem_max  262144
 
 # Include extra init file
     import /system/etc/init.local.rc
@@ -349,6 +437,7 @@ service vold /system/bin/vold
 
 service netd /system/bin/netd
     socket netd stream 0660 root system
+    socket dnsproxyd stream 0660 root inet
 
 service debuggerd /system/bin/debuggerd
 
