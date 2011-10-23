@@ -56,6 +56,8 @@ WIFI_DRIVER_FW_AP_PATH      := "/system/etc/firmware/fw_bcm4329_apsta.bin"
 WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
 WIFI_DRIVER_MODULE_NAME     := "bcm4329"
 
+BOARD_NEEDS_CUTILS_LOG := true
+
 BOARD_USES_GENERIC_AUDIO := false
 BOARD_PREBUILT_LIBAUDIO := false
 
@@ -71,10 +73,14 @@ BOARD_USE_QCOM_PMEM := true
 
 BOARD_CAMERA_USE_GETBUFFERINFO := true
 BOARD_HAVE_HTC_FFC := true
+BOARD_USE_REVERSE_FFC := true
 
+BOARD_NO_RGBX_8888 := true
 BOARD_OVERLAY_FORMAT_YCbCr_420_SP := true
-
+BOARD_USE_HTC_3D := true
 TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_SF_BYPASS := true
+TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
 
 BOARD_HAVE_FM_RADIO := true
 BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
@@ -84,8 +90,9 @@ TARGET_BOOTLOADER_BOARD_NAME := shooter
 BOARD_USE_NEW_LIBRIL_HTC := true
 TARGET_PROVIDES_LIBRIL := vendor/htc/shooter/proprietary/libril.so
 
-BOARD_KERNEL_CMDLINE := no_console_suspend=1
-BOARD_KERNEL_BASE := 0x40400000
+TARGET_HAS_PREBUILT_INIT := ../../../device/htc/shooter/prebuilt/init
+BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=shooter no_console_suspend=1
+BOARD_KERNEL_BASE := 0x48000000
 BOARD_KERNEL_PAGE_SIZE := 2048 
 
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := shooter
@@ -122,8 +129,8 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
-TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/shooter/recovery-kernAl
 
+BOARD_HTCBATT := device/htc/shooter/prebuilt/htcbatt
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
