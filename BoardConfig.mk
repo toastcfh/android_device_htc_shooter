@@ -90,7 +90,6 @@ TARGET_BOOTLOADER_BOARD_NAME := shooter
 BOARD_USE_NEW_LIBRIL_HTC := true
 TARGET_PROVIDES_LIBRIL := vendor/htc/shooter/proprietary/libril.so
 
-TARGET_HAS_PREBUILT_INIT := ../../../device/htc/shooter/prebuilt/init
 BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=shooter no_console_suspend=1
 BOARD_KERNEL_BASE := 0x48000000
 BOARD_KERNEL_PAGE_SIZE := 2048 
