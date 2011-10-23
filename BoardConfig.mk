@@ -129,11 +129,10 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
 
-BOARD_HTCBATT := device/htc/shooter/prebuilt/htcbatt
+TARGET_RECOVERY_INITRC := device/htc/shooter/recovery/init.rc
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := 1
-BOARD_USES_RECOVERY_CHARGEMODE := true

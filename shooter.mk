@@ -18,11 +18,17 @@
 PRODUCT_COPY_FILES += \
     device/htc/shooter/gps.conf:system/etc/gps.conf
 
-## (1) First, the most specific values, i.e. the aspects that are specific to GSM
+## recovery and custom charging
+PRODUCT_COPY_FILES += \
+    device/htc/shooter/prebuilt/init:recovery/root/init \
+    device/htc/shooter/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
+    device/htc/shooter/recovery/sbin/power_test:recovery/root/sbin/power_test \
+    device/htc/shooter/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging \
+    device/htc/shooter/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
+    device/htc/shooter/recovery/sbin/htcbatt:recovery/root/sbin/htcbatt
 
 PRODUCT_COPY_FILES += \
     device/htc/shooter/prebuilt/init:root/init \
-    device/htc/shooter/prebuilt/init:recovery/root/init \
     device/htc/shooter/init.rc:root/init.rc \
     device/htc/shooter/init.shooter.rc:root/init.shooter.rc \
     device/htc/shooter/ueventd.shooter.rc:root/ueventd.shooter.rc
