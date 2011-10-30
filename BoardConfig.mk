@@ -45,7 +45,7 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 BOARD_USES_ADRENO_200 := true
-TARGET_HAS_PREBUILT_INIT := ../../../device/htc/shooter/prebuilt/init
+
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 WPA_SUPPLICANT_VERSION      := VER_0_6_X
@@ -74,7 +74,6 @@ BOARD_USE_QCOM_PMEM := true
 BOARD_CAMERA_USE_GETBUFFERINFO := true
 BOARD_HAVE_HTC_FFC := true
 BOARD_USE_REVERSE_FFC := true
-BOARD_CAMERA_USE_ENCODEDATA := true
 
 TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
 TARGET_HAVE_HDMI_OUT := true
