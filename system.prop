@@ -6,7 +6,7 @@ debug.fb.rgb565 = 0
 
 debug.sf.hw=1
 debug.composition.type=c2d
-debug.overlayui.enable=1
+debug.overlayui.enable=0
 ro.hdmi.enable=true
 
 # board has 3D panel
