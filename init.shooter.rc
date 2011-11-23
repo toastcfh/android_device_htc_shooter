@@ -1,4 +1,8 @@
-
+on early-init
+	export EXTERNAL_STORAGE /mnt/sdcard
+	mkdir /mnt/sdcard 0000 system system
+	# for backwards compatibility
+	symlink /mnt/sdcard /sdcard
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
