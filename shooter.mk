@@ -18,6 +18,9 @@
 PRODUCT_COPY_FILES += \
     device/htc/shooter/gps.conf:system/etc/gps.conf
 
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
 ## recovery and custom charging
 PRODUCT_COPY_FILES += \
     device/htc/shooter/prebuilt/init:recovery/root/init \
@@ -64,12 +67,12 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
 PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    libaudioutils \
+    audio.primary.victor \
     gps.shooter \
     librs_jni \
-    gralloc.msm8660 \
-    copybit.msm8660 \
-    overlay.default \
-    liboverlay \
+    gralloc.shooter \
     com.android.future.usb.accessory \
     libaudio
 
@@ -152,7 +155,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/htc/shooter/prebuilt/libcryp98.so:system/lib/libcryp98.so \
-    device/htc/shooter/prebuilt/init.post_boot.sh:system/etc/init.post_boot.sh
+    device/htc/shooter/prebuilt/init.post_boot.sh:system/etc/init.post_boot.sh \
+    device/htc/shooter/prebuilt/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
 
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
 
@@ -165,6 +169,8 @@ $(call inherit-product, device/htc/shooter/media_a1026.mk)
 
 # htc audio settings
 $(call inherit-product, device/htc/shooter/media_htcaudio.mk)
+
+$(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
