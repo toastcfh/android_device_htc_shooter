@@ -159,30 +159,36 @@ service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
 #   after setting up the capabilities required for WEXT
 #   user wifi
 #   group wifi inet keystore
+    class main
     socket wpa_eth0 dgram 660 wifi wifi
     disabled
     oneshot
 
-service dhcpcd_eth0 /system/bin/dhcpcd -ABKL eth0
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
+    class main
     disabled
     oneshot
 
 service iprenew_eth0 /system/bin/dhcpcd -n
+    class main
     disabled
     oneshot
 
-service dhcpWimax /system/bin/dhcpcd -ABKL -f /etc/wimax/dhcp/wimaxDhcp.conf wimax0
+service dhcpWimax /system/bin/dhcpcd -ABKL -f /etc/wimax/dhcp/wimaxDhcp.conf
+    class main
     disabled
     oneshot
 
 
 # bugreport is triggered by the KEY_VOLUMEUP and KEY_VOLUMEDOWN keycodes
 service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
+    class main
     disabled
     oneshot
     keycodes 114 115
 
 service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus --enable_hci --baudrate 3000000 --patchram /etc/firmware/BCM4329B1_002.002.023.0589.0632.hcd /dev/ttyHS0
+    class main
     user bluetooth
     group bluetooth net_bt_admin
     disabled
@@ -193,6 +199,7 @@ service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus --enable
 # Limit baudrate to 460800 to ensure reliable uart operation
 #service btld /system/bin/logwrapper /system/bin/btld -hwtun 10.0.2.2 -hb 460800 3000000 -lpm 1
 service btld /system/bin/logwrapper /system/bin/btld -hb 3000000
+    class main
     user root
     group bluetooth net_bt_admin
     disabled
@@ -200,22 +207,12 @@ service btld /system/bin/logwrapper /system/bin/btld -hb 3000000
 
 # for USB internet sharing
 service udhcpd /system/bin/udhcpd
-	disabled
-	oneshot
-
-service netsharing_on /system/bin/netsharing net on
-	disabled
-	oneshot
-
-service netsharing_off /system/bin/netsharing net off
-	disabled
-	oneshot
-
-service netsharing_pass /system/bin/netsharing net_pass on
+	class core
 	disabled
 	oneshot
 
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p26 /dev/block/mmcblk0p27 /dev/block/mmcblk0p19
+    class core
     user root
     disabled
 
@@ -357,6 +354,7 @@ service hdmid /system/bin/hdmid
     start hdmid
 
 service htcbatt /system/bin/htcbatt
+    class charger
     user root
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
