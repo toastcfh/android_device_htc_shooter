@@ -3,7 +3,7 @@
 #
 
 debug.fb.rgb565 = 0
-
+ro.telephony.ril.v3=1
 debug.sf.hw=1
 #debug.composition.type=c2d
 #debug.overlayui.enable=0
