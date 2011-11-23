@@ -69,7 +69,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     libaudioutils \
-    audio.primary.victor \
+    audio.primary.shooter \
     gps.shooter \
     librs_jni \
     gralloc.shooter \
