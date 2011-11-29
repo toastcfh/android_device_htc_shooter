@@ -73,7 +73,10 @@ PRODUCT_PACKAGES += \
     audio.primary.shooter \
     gps.shooter \
     librs_jni \
-    gralloc.shooter \
+    copybit.msm8660 \
+    hwcomposer.msm8660 \
+    liboverlay \
+    libmemalloc \
     com.android.future.usb.accessory
 
 # dsp Audio
