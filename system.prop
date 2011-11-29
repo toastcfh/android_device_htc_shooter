@@ -34,7 +34,7 @@ ro.ril.set.mtu1472 = 1
 
 net.tcp.buffersize.wimax = 4096,221184,524288,4096,16384,110208
 
-wifi.interface = eth0
+wifi.interface=wlan0
 wifi.supplicant_scan_interval=15
 ro.com.google.locationfeatures = 1
 
@@ -55,10 +55,7 @@ ro.opengles.version = 131072
 # This is a high density device with more memory, so larger vm heaps for it.
 dalvik.vm.heapsize=32m
 
-# Make cdma voicemail the default voicemail number.
-ro.cdma.voicemail.number = mine
-
-mobiledata.interfaces=rmnet0,eth0,gprs,ppp0,wimax0
+mobiledata.interfaces=rmnet0,wlan0,gprs,ppp0,wimax0
 
 # For emmc phone storage
 ro.phone_storage = 0

@@ -169,7 +169,7 @@
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"wl0.1"</item>
+        <item>"wlan0"</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
@@ -214,5 +214,12 @@
     <integer-array name="config_virtualKeyVibePattern">
         <item>40</item>
     </integer-array>
+
+    <!-- Set to true if the RSSI should always display CDMA signal
+         strength even on EVDO -->
+    <bool name="config_alwaysUseCdmaRssi">true</bool>
+
+    <!-- The VoiceMail default value is displayed to my own number if it is true -->
+    <bool name="config_telephony_use_own_number_for_voicemail">true</bool>
 
 </resources>

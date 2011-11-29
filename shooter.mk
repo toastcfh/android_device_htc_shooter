@@ -74,8 +74,7 @@ PRODUCT_PACKAGES += \
     gps.shooter \
     librs_jni \
     gralloc.shooter \
-    com.android.future.usb.accessory \
-    libaudio
+    com.android.future.usb.accessory
 
 # dsp Audio
 PRODUCT_COPY_FILES += \
@@ -118,10 +117,8 @@ PRODUCT_COPY_FILES += \
 
 # Firmware
 PRODUCT_COPY_FILES += \
-    device/htc/shooter/firmware/BCM4329B1_002.002.023.0589.0632.hcd:system/etc/firmware/BCM4329B1_002.002.023.0589.0632.hcd \
+    device/htc/shooter/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \
     device/htc/shooter/firmware/default_bak.acdb:system/etc/firmware/default_bak.acdb \
-    device/htc/shooter/firmware/fw_bcm4329.bin:system/etc/firmware/fw_bcm4329.bin \
-    device/htc/shooter/firmware/fw_bcm4329_apsta.bin:system/etc/firmware/fw_bcm4329_apsta.bin \
     device/htc/shooter/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
     device/htc/shooter/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
     device/htc/shooter/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw 
@@ -176,7 +173,7 @@ $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
-$(call inherit-product, build/target/product/full_base.mk)
+$(call inherit-product, build/target/product/full_base_telephony.mk)
 
 
 PRODUCT_NAME := htc_shooter
