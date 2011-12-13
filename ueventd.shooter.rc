@@ -8,6 +8,7 @@
 /dev/msm_rotator        0660    system      graphics
 /dev/gemini*            0660    system      system
 /dev/pmem               0660    system      graphics
+/dev/genlock            0660    system      graphics
 
 # sensors
 /dev/akm8975_daemon     0640    compass     system
