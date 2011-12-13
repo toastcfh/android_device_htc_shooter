@@ -3,11 +3,12 @@
 #
 
 debug.fb.rgb565 = 0
-ro.telephony.ril.v3=1
+ro.telephony.ril.v3=facilitylock,signalstrength,icccardstatus,datacall
 debug.sf.hw=1
-#debug.composition.type=c2d
-#debug.overlayui.enable=0
-#ro.hdmi.enable=true
+debug.composition.type=dyn
+ro.sf.compbypass.enable=1
+debug.enabletr=false
+hwui.render_dirty_regions=false
 
 # board has 3D panel
 #persist.user.panel3D = 1
