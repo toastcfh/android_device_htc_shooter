@@ -75,6 +75,7 @@ PRODUCT_PACKAGES += \
     librs_jni \
     copybit.msm8660 \
     hwcomposer.msm8660 \
+    gralloc.msm8660 \
     liboverlay \
     libmemalloc \
     com.android.future.usb.accessory
@@ -116,7 +117,8 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl\
     device/htc/shooter/keylayout/shooter-keypad.kl:system/usr/keylayout/shooter-keypad.kl \
     device/htc/shooter/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    device/htc/shooter/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl
+    device/htc/shooter/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl\
+    device/htc/shooter/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl
 
 # Firmware
 PRODUCT_COPY_FILES += \
