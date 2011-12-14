@@ -35,12 +35,12 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/init.rc:root/init.rc \
     device/htc/shooter/init.shooter.rc:root/init.shooter.rc \
     device/htc/shooter/ueventd.shooter.rc:root/ueventd.shooter.rc \
-    device/htc/pyramid/init.pyramid.usb.rc:root/init.pyramid.usb.rc \
+    device/htc/shooter/init.shooter.usb.rc:root/init.shooter.usb.rc
 
-## (2) Also get non-open-source GSM-specific aspects if available
+## (2) Also get non-open-source specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
 
-## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
+
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.com.google.clientidbase=android-sprint-us \
 	ro.com.google.locationfeatures=1 \
@@ -48,7 +48,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.cdma.home.operator.alpha=Sprint \
 	ro.setupwizard.enable_bypass=1 \
         dalvik.vm.lockprof.threshold=500 \
-        dalvik.vm.dexopt-flags=m=y
+        dalvik.vm.dexopt-flags=m=y \
+	debug.enabletr=false \
+	hwui.render_dirty_regions=false
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/shooter/overlay
 
