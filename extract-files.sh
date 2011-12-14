@@ -75,7 +75,6 @@ adb pull /system/lib/libOmxVdec.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libOmxVenc.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libOpenVG.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libposteffect.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libwebkitaccel.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libqdp.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libqmi.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libqmiservices.so ../../../vendor/htc/$DEVICE/proprietary
@@ -123,7 +122,6 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libcamera.so:obj/lib/libcamera.so \\
     vendor/htc/__DEVICE__/proprietary/libaudioalsa.so:obj/lib/libaudioalsa.so \\
     vendor/htc/__DEVICE__/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so \\
-    vendor/htc/__DEVICE__/proprietary/libwebkitaccel.so:obj/lib/libwebkitaccel.so \\
     vendor/htc/__DEVICE__/proprietary/libril.so:obj/lib/libril.so
 
 # All the blobs necessary for shooter
@@ -187,7 +185,6 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libqdp.so:/system/lib/libqdp.so \\
     vendor/htc/__DEVICE__/proprietary/libqmiservices.so:/system/lib/libqmiservices.so \\
     vendor/htc/__DEVICE__/proprietary/libril.so:/system/lib/libril.so \\
-    vendor/htc/__DEVICE__/proprietary/libwebkitaccel.so:/system/lib/libwebkitaccel.so \\
     vendor/htc/__DEVICE__/proprietary/libq3dtools_adreno200.so:/system/lib/egl/libq3dtools_adreno200.so \\
     vendor/htc/__DEVICE__/proprietary/lights.msm8660.so:/system/lib/hw/lights.msm8660.so \\
     vendor/htc/__DEVICE__/proprietary/sensors.shooter.so:/system/lib/hw/sensors.shooter.so \\
