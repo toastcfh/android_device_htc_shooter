@@ -30,10 +30,12 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
     device/htc/shooter/recovery/sbin/htcbatt:recovery/root/sbin/htcbatt
 
+## ramdisk stuffs
 PRODUCT_COPY_FILES += \
     device/htc/shooter/init.rc:root/init.rc \
     device/htc/shooter/init.shooter.rc:root/init.shooter.rc \
-    device/htc/shooter/ueventd.shooter.rc:root/ueventd.shooter.rc
+    device/htc/shooter/ueventd.shooter.rc:root/ueventd.shooter.rc \
+    device/htc/pyramid/init.pyramid.usb.rc:root/init.pyramid.usb.rc \
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
