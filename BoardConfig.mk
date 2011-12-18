@@ -72,7 +72,7 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_EGL_CFG := device/htc/shooter/egl.cfg
 
 BOARD_USES_QCOM_LIBS := true
-#BOARD_USES_QCOM_LIBRPC := true
+BOARD_USES_QCOM_LIBRPC := true
 
 BOARD_USES_QCOM_GPS := true
 BOARD_USE_QCOM_PMEM := true

@@ -14,12 +14,9 @@
 # limitations under the License.
 #
 
-# The gps config appropriate for this device
+## The gps config appropriate for this device
 PRODUCT_COPY_FILES += \
     device/htc/shooter/gps.conf:system/etc/gps.conf
-
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 ## recovery and custom charging
 PRODUCT_COPY_FILES += \
@@ -40,20 +37,28 @@ PRODUCT_COPY_FILES += \
 ## (2) Also get non-open-source specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
 
-
+## CDMA Sprint stuffs
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.com.google.clientidbase=android-sprint-us \
 	ro.com.google.locationfeatures=1 \
 	ro.cdma.home.operator.numeric=310120 \
-	ro.cdma.home.operator.alpha=Sprint \
+	ro.cdma.home.operator.alpha=Sprint
+
+## misc
+PRODUCT_PROPERTY_OVERRIDES += \
 	ro.setupwizard.enable_bypass=1 \
         dalvik.vm.lockprof.threshold=500 \
-        dalvik.vm.dexopt-flags=m=y \
+        dalvik.vm.dexopt-flags=m=y
+
+## graphics f/b
+PRODUCT_PROPERTY_OVERRIDES += \
 	debug.enabletr=false \
 	hwui.render_dirty_regions=false
 
+## overlays
 DEVICE_PACKAGE_OVERLAYS += device/htc/shooter/overlay
 
+# permissions
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -71,21 +76,36 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
+## qcom/display
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio_policy.shooter \
-    libaudioutils \
-    audio.primary.shooter \
-    gps.shooter \
-    librs_jni \
     copybit.msm8660 \
     hwcomposer.msm8660 \
     gralloc.msm8660 \
     liboverlay \
     libmemalloc \
+    libgenlock \
+    libtilerenderer \
+    libQcomUI
+
+## misc
+PRODUCT_PACKAGES += \
+    gps.shooter \
+    librs_jni \
     com.android.future.usb.accessory
 
-# dsp Audio
+## cm/audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio_policy.shooter \
+    libaudioutils \
+    audio.primary.shooter
+
+## cm dsp manager
+PRODUCT_PACKAGES += \
+    DSPManager \
+    libcyanogen-dsp
+
+## dsp Audio
 PRODUCT_COPY_FILES += \
     device/htc/shooter/dsp/AdieHWCodec.csv:system/etc/AdieHWCodec.csv \
     device/htc/shooter/dsp/AIC3254_REG.csv:system/etc/AIC3254_REG.csv \
@@ -113,7 +133,7 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/dsp/soundimage/srsfx_trumedia_music.cfg:system/etc/soundimage/srsfx_trumedia_music.cfg \
     device/htc/shooter/dsp/soundimage/srs_geq10.cfg:system/etc/soundimage/srs_geq10.cfg
 
-# Keylayouts
+## Keylayouts and Keychars
 PRODUCT_COPY_FILES += \
     device/htc/shooter/keychars/BT_HID.kcm.bin:system/usr/keychars/BT_HID.kcm.bin \
     device/htc/shooter/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin \
@@ -123,9 +143,10 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/keylayout/shooter-keypad.kl:system/usr/keylayout/shooter-keypad.kl \
     device/htc/shooter/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     device/htc/shooter/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl\
-    device/htc/shooter/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl
+    device/htc/shooter/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl \
+    device/htc/shooter/prebuilt/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
 
-# Firmware
+## Firmware
 PRODUCT_COPY_FILES += \
     device/htc/shooter/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \
     device/htc/shooter/firmware/default_bak.acdb:system/etc/firmware/default_bak.acdb \
@@ -135,19 +156,20 @@ PRODUCT_COPY_FILES += \
 
 
 
-# we have enough storage space to hold precise GC data
+## we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-# device uses high-density artwork where available
+## device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_LOCALES += hdpi
 
+## misc
 PRODUCT_COPY_FILES += \
     device/htc/shooter/vold.fstab:system/etc/vold.fstab \
     device/htc/shooter/apns-conf.xml:system/etc/apns-conf.xml
 
-# Kernel modules
-#PRODUCT_COPY_FILES += \
-
+## KernAl and modules
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 LOCAL_KERNEL := device/htc/shooter/kernAl
 else
@@ -161,26 +183,26 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
     device/htc/shooter/modules/sequans_sdio.ko:system/lib/modules/sequans_sdio.ko 
 
+## HAX
 PRODUCT_COPY_FILES += \
     device/htc/shooter/prebuilt/libcryp98.so:system/lib/libcryp98.so \
-    device/htc/shooter/prebuilt/init.post_boot.sh:system/etc/init.post_boot.sh \
-    device/htc/shooter/prebuilt/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
+    device/htc/shooter/prebuilt/init.post_boot.sh:system/etc/init.post_boot.sh
 
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
 
-# media config xml file
+## media config xml file
 PRODUCT_COPY_FILES += \
     device/htc/shooter/media_profiles.xml:system/etc/media_profiles.xml
 
-# media profiles and capabilities spec
+## media profiles and capabilities spec
 $(call inherit-product, device/htc/shooter/media_a1026.mk)
 
-# htc audio settings
+## htc audio settings
 $(call inherit-product, device/htc/shooter/media_htcaudio.mk)
 
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 
-# stuff common to all HTC phones
+## stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
