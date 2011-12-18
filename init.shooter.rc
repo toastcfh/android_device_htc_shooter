@@ -4,32 +4,18 @@ on early-init
 	# for backwards compatibility
 	symlink /mnt/sdcard /sdcard
 
-on boot
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
-
-    service post-boot /system/bin/sh /system/etc/init.post_boot.sh
-    user root
-    oneshot
-
 on early-fs
     mkdir /system
     mkdir /data 0771 system system
     mkdir /cache 0770 system cache
     mkdir /devlog 0700 root root
 
-    mount ext4 /dev/block/mmcblk0p23 /system wait ro data=ordered noauto_da_alloc
-    mount ext4 /dev/block/mmcblk0p24 /data wait noatime nosuid nodev data=ordered noauto_da_alloc
-    mount ext4 /dev/block/mmcblk0p25 /cache wait noatime nosuid nodev data=ordered noauto_da_alloc
-    mount ext4 /dev/block/mmcblk0p28 /devlog wait noatime nosuid nodev data=ordered noauto_da_alloc
-
-    devwait /dev/block/mmcblk0p18
-
-on fs
+    #8x60: firmware
     rm /vendor
-    #8x60: mount radio partition and create links for modem/q6 firmwares
     mkdir /vendor 0771 system system
     mkdir /vendor/firmware 0771 system system
     mkdir /vendor/firmware/misc 0771 system system
+    wait /dev/block/mmcblk0p18
     mount vfat /dev/block/mmcblk0p18 /vendor/firmware/misc ro shortname=lower
     symlink /vendor/firmware/misc/q6.b07 /vendor/firmware/q6.b07
     symlink /vendor/firmware/misc/q6.b06 /vendor/firmware/q6.b06
@@ -54,6 +40,10 @@ on fs
     symlink /system/vendor/firmware/fw_bcm4329.bin /vendor/firmware/fw_bcm4329.bin
     symlink /system/vendor/firmware/fw_bcm4329_apsta.bin /vendor/firmware/fw_bcm4329_apsta.bin
     symlink /system/vendor/firmware/bcm4329.hcd /vendor/firmware/bcm4329.hcd
+    mount ext4 /dev/block/mmcblk0p23 /system wait ro data=ordered noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p24 /data wait noatime nosuid nodev data=ordered noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p25 /cache wait noatime nosuid nodev data=ordered noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p28 /devlog wait noatime nosuid nodev data=ordered noauto_da_alloc
 
     # double check the perms and set owner
     chown root root /devlog
@@ -154,6 +144,13 @@ on fs
     mkdir /sdcard/download
     copy /etc/DxPrdyProvisionObf.pkg /data/DxDrm/Credentials/PlayReady/DxPrdyProvisionObf.pkg
     copy /etc/DxDrmConfig_Server.txt /data/DxDrm/DxDrmConfig_Server.txt
+
+on boot
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+
+service post-boot /system/bin/sh /system/etc/init.post_boot.sh
+    user root
+    oneshot
 
 # Force loading of modem and Q6 images
 service load-modem /system/bin/load-modem.sh

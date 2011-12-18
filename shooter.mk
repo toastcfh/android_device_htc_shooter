@@ -73,6 +73,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
+    audio_policy.shooter \
     libaudioutils \
     audio.primary.shooter \
     gps.shooter \
