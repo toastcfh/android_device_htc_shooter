@@ -52,8 +52,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ## graphics f/b
 PRODUCT_PROPERTY_OVERRIDES += \
-	debug.enabletr=false \
-	hwui.render_dirty_regions=false
+	debug.enabletr=true
 
 ## overlays
 DEVICE_PACKAGE_OVERLAYS += device/htc/shooter/overlay
@@ -96,7 +95,6 @@ PRODUCT_PACKAGES += \
 ## cm/audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
-    audio_policy.shooter \
     libaudioutils \
     audio.primary.shooter
 
@@ -191,8 +189,8 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
 
 ## media config xml file
-PRODUCT_COPY_FILES += \
-    device/htc/shooter/media_profiles.xml:system/etc/media_profiles.xml
+#PRODUCT_COPY_FILES += \
+#    device/htc/shooter/media_profiles.xml:system/etc/media_profiles.xml
 
 ## media profiles and capabilities spec
 $(call inherit-product, device/htc/shooter/media_a1026.mk)

@@ -8,6 +8,10 @@ debug.sf.hw=1
 debug.composition.type=dyn
 ro.sf.compbypass.enable=1
 
+#cm qcom build lub
+com.qc.hardware=true
+com.qc.hdmi_out=true
+
 # board has 3D panel
 #persist.user.panel3D = 1
 
