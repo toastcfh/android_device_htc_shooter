@@ -9,6 +9,7 @@
 /dev/gemini*            0660    system      system
 /dev/pmem               0660    system      graphics
 /dev/genlock            0660    system      graphics
+/dev/msm_camera/*       0660    system      camera
 
 # sensors
 /dev/akm8975_daemon     0640    compass     system
