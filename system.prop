@@ -3,18 +3,19 @@
 #
 
 debug.fb.rgb565 = 0
-ro.telephony.ril.v3=facilitylock,signalstrength,icccardstatus,datacall
 debug.sf.hw=1
-debug.composition.type=dyn
+debug.composition.type=c2d
 ro.sf.compbypass.enable=1
+debug.enabletr=true
 
 #cm qcom build lub
 com.qc.hardware=true
-com.qc.hdmi_out=true
+com.qc.hdmi_out=false
 
 # board has 3D panel
 #persist.user.panel3D = 1
 
+ro.telephony.ril.v3=facilitylock,signalstrength,icccardstatus,datacall
 rild.libpath=/system/lib/libhtc_ril.so
 ro.telephony.default_network = 4
 gsm.sim.operator.alpha = sprint
@@ -54,9 +55,6 @@ ro.ril.def.agps.mode = 2
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
 ro.opengles.version = 131072
-
-# This is a high density device with more memory, so larger vm heaps for it.
-dalvik.vm.heapsize=32m
 
 mobiledata.interfaces=rmnet0,wlan0,gprs,ppp0,wimax0
 

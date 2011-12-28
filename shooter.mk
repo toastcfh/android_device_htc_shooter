@@ -47,12 +47,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ## misc
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.setupwizard.enable_bypass=1 \
+	dalvik.vm.heapsize=64m \
+	dalvik.vm.heapgrowthlimit=32m \
         dalvik.vm.lockprof.threshold=500 \
         dalvik.vm.dexopt-flags=m=y
-
-## graphics f/b
-PRODUCT_PROPERTY_OVERRIDES += \
-	debug.enabletr=true
 
 ## overlays
 DEVICE_PACKAGE_OVERLAYS += device/htc/shooter/overlay
