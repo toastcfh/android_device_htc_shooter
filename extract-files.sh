@@ -139,8 +139,8 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libaudiopolicy.so:system/lib/libaudiopolicy.so \\
     vendor/htc/__DEVICE__/proprietary/libC2D2.so:/system/lib/libC2D2.so \\
     vendor/htc/__DEVICE__/proprietary/libcamerapp.so:/system/lib/libcamerapp.so \\
-    vendor/htc/__DEVICE__/proprietary/libcamerapp.so:/system/lib/libcamera_client.so \\
-    vendor/htc/__DEVICE__/proprietary/libcamerapp.so:/system/lib/libcameraface.so \\
+    vendor/htc/__DEVICE__/proprietary/libcamera_client.so:/system/lib/libcamera_client.so \\
+    vendor/htc/__DEVICE__/proprietary/libcameraface.so:/system/lib/libcameraface.so \\
     vendor/htc/__DEVICE__/proprietary/libdll.so:/system/lib/libdll.so \\
     vendor/htc/__DEVICE__/proprietary/libdiag.so:/system/lib/libdiag.so \\
     vendor/htc/__DEVICE__/proprietary/libidl.so:/system/lib/libidl.so \\
