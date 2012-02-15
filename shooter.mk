@@ -46,11 +46,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ## misc
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.setupwizard.enable_bypass=1 \
-	dalvik.vm.heapsize=64m \
-	dalvik.vm.heapgrowthlimit=32m \
-        dalvik.vm.lockprof.threshold=500 \
-        dalvik.vm.dexopt-flags=m=y
+	ro.setupwizard.enable_bypass=1
 
 ## overlays
 DEVICE_PACKAGE_OVERLAYS += device/htc/shooter/overlay
@@ -83,6 +79,10 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libtilerenderer \
     libQcomUI
+
+## qcom/media
+PRODUCT_PACKAGES += \
+    libstagefrighthw
 
 ## misc
 PRODUCT_PACKAGES += \
@@ -196,10 +196,10 @@ $(call inherit-product, device/htc/shooter/media_a1026.mk)
 ## htc audio settings
 $(call inherit-product, device/htc/shooter/media_htcaudio.mk)
 
-$(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
-
 ## stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
+
+$(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
 
