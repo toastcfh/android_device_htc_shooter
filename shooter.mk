@@ -29,7 +29,7 @@ PRODUCT_COPY_FILES += \
 
 ## ramdisk stuffs
 PRODUCT_COPY_FILES += \
-    device/htc/shooter/init.rc:root/init.rc \
+    device/htc/shooter/prebuilt/init:root/init \
     device/htc/shooter/init.shooter.rc:root/init.shooter.rc \
     device/htc/shooter/ueventd.shooter.rc:root/ueventd.shooter.rc \
     device/htc/shooter/init.shooter.usb.rc:root/init.shooter.usb.rc
@@ -69,32 +69,19 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
-## qcom/display
-PRODUCT_PACKAGES += \
-    copybit.msm8660 \
-    hwcomposer.msm8660 \
-    gralloc.msm8660 \
-    liboverlay \
-    libmemalloc \
-    libgenlock \
-    libtilerenderer \
-    libQcomUI
-
 ## qcom/media
 PRODUCT_PACKAGES += \
-    libstagefrighthw
+    libstagefrighthw \
+    libOmxCore \
+    libOmxVdec \
+    libOmxVenc \
+    libdivxdrmdecrypt
 
 ## misc
 PRODUCT_PACKAGES += \
     gps.shooter \
     librs_jni \
     com.android.future.usb.accessory
-
-## cm/audio
-PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    libaudioutils \
-    audio.primary.shooter
 
 ## cm dsp manager
 PRODUCT_PACKAGES += \
@@ -151,7 +138,6 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw 
 
 
-
 ## we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -181,14 +167,12 @@ PRODUCT_COPY_FILES += \
 
 ## HAX
 PRODUCT_COPY_FILES += \
-    device/htc/shooter/prebuilt/libcryp98.so:system/lib/libcryp98.so \
-    device/htc/shooter/prebuilt/init.post_boot.sh:system/etc/init.post_boot.sh
+    device/htc/shooter/prebuilt/libcryp98.so:system/lib/libcryp98.so
 
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
 
-## media config xml file
-#PRODUCT_COPY_FILES += \
-#    device/htc/shooter/media_profiles.xml:system/etc/media_profiles.xml
+# common msm8660 configs
+$(call inherit-product, device/htc/msm8660-common/msm8660.mk)
 
 ## media profiles and capabilities spec
 $(call inherit-product, device/htc/shooter/media_a1026.mk)

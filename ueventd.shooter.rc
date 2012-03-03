@@ -6,10 +6,14 @@
 /dev/kgsl-3d0           0666    root        root
 /dev/kgsl-2d1           0666    root        root
 /dev/msm_rotator        0660    system      graphics
-/dev/gemini*            0660    system      system
 /dev/pmem               0660    system      graphics
-/dev/genlock            0660    system      graphics
+/dev/genlock            0666    root        root
+
+# camera
+/dev/gemini0            0660    system      system
 /dev/msm_camera/*       0660    system      camera
+/dev/video*             0660    system      camera
+/dev/pmem_smipool*      0660    system      camera
 
 # sensors
 /dev/akm8975_daemon     0640    compass     system
@@ -33,7 +37,6 @@
 /dev/adsp               0660    system      audio
 /dev/pmem_audio	        0660    system      audio
 /dev/tpa2051d3	        0660    system      audio
-/dev/pmem_smipool       0660    system      audio
 /dev/msm_vidc_dec       0660    system      audio
 /dev/msm_vidc_enc       0660    system      audio
 /dev/msm_vidc_reg       0660    system      audio

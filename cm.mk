@@ -11,5 +11,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=htc_shooter BUILD_ID=GRJ22 BUILD_FI
 
 # Release name and versioning
 PRODUCT_RELEASE_NAME := Shooter
-PRODUCT_VERSION_DEVICE_SPECIFIC :=
 -include vendor/cm/config/common_versions.mk

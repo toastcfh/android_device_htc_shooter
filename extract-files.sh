@@ -35,11 +35,12 @@ adb pull /system/lib/egl/libq3dtools_adreno200.so ../../../vendor/htc/$DEVICE/pr
 adb pull /system/lib/egl/eglsubAndroid.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libsc-a2xx.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 adb pull /system/lib/liba2dp.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
-adb pull /system/lib/libaudio.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libaudioalsa.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libaudcal.so ../../../vendor/htc/$DEVICE/proprietary
+adb pull /system/lib/libaudcalwb.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
+adb pull /system/lib/libaudcal_nel.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 adb pull /system/lib/libacdbloader.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libaudiopolicy.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
+adb pull /system/lib/libacdbmapper.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 adb pull /system/lib/libC2D2.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libcamerapp.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libcameraface.so ../../../vendor/htc/$DEVICE/proprietary
@@ -59,22 +60,19 @@ adb pull /system/lib/libmmjpeg.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libmmjpeg2.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libmmjps.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libmmmpo.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libmm-omxcore.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libmmstereo.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libmpl.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libmllite.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libnetmgr.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/liboemcamera.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libOlaEngine.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libOmxCore.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libOmxVdec.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libOmxVenc.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libOpenVG.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libposteffect.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libqdp.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libqmi.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libqmiservices.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libril.so ../../../vendor/htc/$DEVICE/proprietary
+adb pull /system/lib/libv8.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 adb pull /system/lib/hw/camera.default.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/hw/lights.msm8660.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/hw/sensors.shooter.so ../../../vendor/htc/$DEVICE/proprietary
@@ -115,12 +113,14 @@ adb pull /system/etc/wimax/sequansd/sequansd_app.xml ../../../vendor/htc/$DEVICE
 
 # Prebuilt libraries that are needed to build open-source libraries
 PRODUCT_COPY_FILES += \\
-    vendor/htc/__DEVICE__/proprietary/libaudio.so:obj/lib/libaudio.so \\
     vendor/htc/__DEVICE__/proprietary/camera.default.so:obj/lib/hw/camera.default.so \\
     vendor/htc/__DEVICE__/proprietary/libaudioalsa.so:obj/lib/libaudioalsa.so \\
-    vendor/htc/__DEVICE__/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so \\
+    vendor/htc/__DEVICE__/proprietary/libacdbloader.so:obj/lib/libacdbloader.so \\
+    vendor/htc/__DEVICE__/proprietary/libacdbmapper.so:obj/lib/libacdbmapper.so \\
+    vendor/htc/__DEVICE__/proprietary/libv8.so:obj/lib/libv8.so \\
     vendor/htc/__DEVICE__/proprietary/libril.so:obj/lib/libril.so \\
-
+    vendor/htc/__DEVICE__/proprietary/libv8.so:obj/lib/libv8.so
+    
 # All the blobs necessary for shooter
 PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/bma150_usr:/system/bin/bma150_usr \\
@@ -132,11 +132,12 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/netmgrd:/system/bin/netmgrd \\
     vendor/htc/__DEVICE__/proprietary/qmuxd:/system/bin/qmuxd \\
     vendor/htc/__DEVICE__/proprietary/liba2dp.so:system/lib/liba2dp.so \\
-    vendor/htc/__DEVICE__/proprietary/libaudio.so:/system/lib/libaudio.so \\
     vendor/htc/__DEVICE__/proprietary/libaudioalsa.so:/system/lib/libaudioalsa.so \\
     vendor/htc/__DEVICE__/proprietary/libaudcal.so:/system/lib/libaudcal.so \\
-    vendor/htc/__DEVICE__/proprietary/libacdbloader.so:/system/lib/libacdbloader.so \\
-    vendor/htc/__DEVICE__/proprietary/libaudiopolicy.so:system/lib/libaudiopolicy.so \\
+    vendor/htc/__DEVICE__/proprietary/libaudcalwb.so:system/lib/libaudcalwb.so \\
+    vendor/htc/__DEVICE__/proprietary/libaudcal_nel.so:system/lib/libaudcal_nel.so \\
+    vendor/htc/__DEVICE__/proprietary/libacdbloader.so:system/lib/libacdbloader.so \\
+    vendor/htc/__DEVICE__/proprietary/libacdbmapper.so:system/lib/libacdbmapper.so \\
     vendor/htc/__DEVICE__/proprietary/libC2D2.so:/system/lib/libC2D2.so \\
     vendor/htc/__DEVICE__/proprietary/libcamerapp.so:/system/lib/libcamerapp.so \\
     vendor/htc/__DEVICE__/proprietary/libcamera_client.so:/system/lib/libcamera_client.so \\
@@ -164,9 +165,6 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libnetmgr.so:/system/lib/libnetmgr.so \\
     vendor/htc/__DEVICE__/proprietary/liboemcamera.so:/system/lib/liboemcamera.so \\
     vendor/htc/__DEVICE__/proprietary/libOlaEngine.so:/system/lib/libOlaEngine.so \\
-    vendor/htc/__DEVICE__/proprietary/libOmxCore.so:/system/lib/libOmxCore.so \\
-    vendor/htc/__DEVICE__/proprietary/libOmxVdec.so:/system/lib/libOmxVdec.so \\
-    vendor/htc/__DEVICE__/proprietary/libOmxVenc.so:/system/lib/libOmxVenc.so \\
     vendor/htc/__DEVICE__/proprietary/libOpenVG.so:/system/lib/libOpenVG.so \\
     vendor/htc/__DEVICE__/proprietary/libposteffect.so:/system/lib/libposteffect.so \\
     vendor/htc/__DEVICE__/proprietary/libqmi.so:/system/lib/libqmi.so \\
@@ -174,6 +172,7 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libqmiservices.so:/system/lib/libqmiservices.so \\
     vendor/htc/__DEVICE__/proprietary/libq3dtools_adreno200.so:/system/lib/egl/libq3dtools_adreno200.so \\
     vendor/htc/__DEVICE__/proprietary/libril.so:/system/lib/libril.so \\
+    vendor/htc/__DEVICE__/proprietary/libv8.so:system/lib/libv8.so \\
     vendor/htc/__DEVICE__/proprietary/camera.default.so:/system/lib/hw/camera.default.so \\
     vendor/htc/__DEVICE__/proprietary/lights.msm8660.so:/system/lib/hw/lights.msm8660.so \\
     vendor/htc/__DEVICE__/proprietary/sensors.shooter.so:/system/lib/hw/sensors.shooter.so \\

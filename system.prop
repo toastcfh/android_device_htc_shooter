@@ -6,7 +6,9 @@ debug.fb.rgb565 = 0
 debug.sf.hw=1
 debug.composition.type=c2d
 ro.sf.compbypass.enable=1
-debug.enabletr=true
+#debug.enabletr=true
+debug.qctwa.statusbar = 1
+debug.qctwa.preservebuf = 1
 
 #cm qcom build lub
 com.qc.hardware=true
