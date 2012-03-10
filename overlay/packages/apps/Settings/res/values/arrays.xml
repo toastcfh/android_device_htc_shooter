@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2009 The Android Open Source Project
+<!-- Copyright (C) 2012 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,17 +14,26 @@
      limitations under the License.
 -->
 
-<!-- Tuna-specific phone app resources. -->
 <resources>
 
-    <!-- Flag indicating if the tty is enabled -->
-    <bool name="tty_enabled">true</bool>
+    <string-array name="entries_heapsize">
+        <item>12m</item>
+        <item>16m</item>
+        <item>24m</item>
+        <item>32m</item>
+        <item>48m</item>
+        <item>64m</item>
+        <item>128m</item>
+    </string-array>
 
-    <!-- Determine whether calls to mute the microphone in PhoneUtils
-         are routed through the android.media.AudioManager class (true) or through
-         the com.android.internal.telephony.Phone interface (false). -->
-    <bool name="send_mic_mute_to_AudioManager">true</bool>
+    <string-array name="values_heapsize" translatable="false">
+        <item>12m</item>
+        <item>16m</item>
+        <item>24m</item>
+        <item>32m</item>
+        <item>48m</item>
+        <item>64m</item>
+        <item>128m</item>
+    </string-array>
 
-    <!-- This device implements a noise suppression device for in call audio-->
-    <bool name="has_in_call_noise_suppression">true</bool>
-</resources>
+</resources> 
