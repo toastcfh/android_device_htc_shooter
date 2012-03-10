@@ -78,6 +78,7 @@ on early-fs
     mkdir /data/wimax/ 0770  system system
     mkdir /data/wimax/log 0770  system system
 
+on init
     # bluetooth power up/down interface
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -124,6 +125,15 @@ on early-fs
 	chown system system /sys/class/optical_sensors/proximity/ps_led
 	chown system system /sys/class/optical_sensors/proximity/ps_test_mode
 
+    # for CM performance
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_available_frequencies
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_available_governors
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq
+    chown system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+
 	# for simlock
 	chown radio radio /dev/simlock
 	chmod 0660 /dev/simlock
@@ -132,18 +142,17 @@ on early-fs
 	chown radio radio /sys/module/htc_battery_8x60/parameters/phone_call
 	chmod 0660 /sys/module/htc_battery_8x60/parameters/phone_call
 
-    # for Slate charging timer
+	# to enable low charge current in voice call
+	chown radio radio /sys/class/power_supply/battery/charger_control
+	chmod 0660 /sys/class/power_supply/battery/charger_control
+    
+	# for Slate charging timer
 	chown radio /sys/class/power_supply/battery/charger_timer
 
-    # Discretix DRM
-    mkdir /data/DxDrm
-    mkdir /data/DxDrm/fuse
-    mkdir /data/DxDrm/Credentials
-    mkdir /data/DxDrm/Credentials/PlayReady
-    chmod 555 /data/DxDrm
-    mkdir /sdcard/download
-    copy /etc/DxPrdyProvisionObf.pkg /data/DxDrm/Credentials/PlayReady/DxPrdyProvisionObf.pkg
-    copy /etc/DxDrmConfig_Server.txt /data/DxDrm/DxDrmConfig_Server.txt
+    # Overwrite framework low memory killer setting
+    write /sys/module/lowmemorykiller/parameters/minfree 2048,3072,4096,6144,8192,12288
+    write /sys/module/lowmemorykiller/parameters/minfile 2048,3072,4096,6144,8192,12288
+    write /sys/module/lowmemorykiller/parameters/check_filepages 1
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
@@ -193,12 +202,6 @@ service hciattach /system/bin/brcm_patchram_plus --enable_hci \
     disabled
     oneshot
 
-# for USB internet sharing
-service udhcpd /system/bin/udhcpd
-	class core
-	disabled
-	oneshot
-
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p26 /dev/block/mmcblk0p27 /dev/block/mmcblk0p19
     class core
     user root
@@ -214,17 +217,9 @@ on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
     stop netmgrd
 
-# for modem link
-service modem /system/xbin/wireless_modem
-    user system
-    group system radio
-    disabled
-
-on property:service.modem.enable=1
-	start modem
-
-on property:service.modem.enable=0
-	stop modem
+on property:sys.radio.shutdown=true
+   write /sys/devices/platform/rs300000a7.65536/force_sync 1
+   write /sys/devices/platform/rs300100a7.65536/force_sync 1
 
 on property:ro.emmc=1
     start rmt_storage
@@ -300,43 +295,19 @@ service getWMXPropd /system/bin/getWiMAXPropDaemond
     group root
     oneshot
 
-service dmagent /system/bin/dmagent -N -P19 -VSY
-    socket dmagent stream 660 root radio
-    user root
-    group radio cache inet misc
-
-# HTC IPC server
-#service htcipcd /system/bin/htcipcd
-#    user root
-#    group root system
-
-# CIQ backend daemon
-#service iqd /system/bin/iqd
-#    user root
-#    group root system
-
-# CIQ frontend daemon
-#service iqfd /system/bin/iqfd
-#    user root
-#    group root system
-
-service srv_ser2net /system/bin/ser2net -n
+service modem /system/bin/wireless_modem
+    user system
+    group system radio
     disabled
 
-on property:service.ser2net.enable=1
-    start srv_ser2net
+on property:service.modem.enable=1
+    start modem
 
 on property:service.ser2net.enable=0
     stop srv_ser2net
 
-# for vnc
-service androidvncserver /system/bin/androidvncserver -a
-    disabled
-    oneshot
-
-service usbnet /system/bin/usbnet on
-    disabled
-    oneshot
+on property:service.modem.enable=0
+    stop modem
 
 service hdmid /system/bin/hdmid
     socket displayd stream 0660 root system graphics
@@ -347,21 +318,31 @@ service htcbatt /system/bin/htcbatt
     class core
     user root
 
-service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+service mpdecision /system/bin/mpdecision --no_sleep --avg_comp --single_core_while_panel_off
     user root
     disabled
 
+service thermald /system/bin/thermald
+    user root
+    disabled
+
+service qcom-post-boot /system/sbin/init.qcom.post_boot.sh
+    user root
+    disabled
+    oneshot
+
 on property:init.svc.bootanim=stopped
+    start qcom-post-boot
     start thermald
     start mpdecision
 
-service htc_ebdlogd /system/bin/htc_ebdlogd -s -k -P 7
+service htc_ebdlogd /system/bin/htc_ebdlogd -s -k -P 7 -n 10 -N 10
 	user root
     	disabled
 	oneshot
         ioprio idle 0
 
-service htc_ebdlogd_rel /system/bin/htc_ebdlogd -s -k
+service htc_ebdlogd_rel /system/bin/htc_ebdlogd -s -k -n 10 -N 10
 	user root
     	disabled
 	oneshot
@@ -370,12 +351,26 @@ service htc_ebdlogd_rel /system/bin/htc_ebdlogd -s -k
 service 3d_camera /system/bin/3D_calibration
     user root
 
-# Discretix DRM
-service dx_drm_server /system/bin/DxDrmServerIpc -f -o allow_other /data/DxDrm/fuse
-
 on property:ro.build.tags=test-keys
     start htc_ebdlogd
 
 on property:ro.build.tags=release-keys
     start htc_ebdlogd_rel
 
+# CABL
+service abld /system/bin/mm-abl-daemon
+    disabled
+
+on property:ro.qualcomm.cabl=1
+    start abld
+
+on property:ro.qualcomm.cabl=0
+    stop abld
+
+service qmuxd /system/bin/qmuxd
+    class main
+    user radio
+    group system radio inet
+
+service netmgrd /system/bin/netmgrd
+    class main
