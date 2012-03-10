@@ -5,7 +5,8 @@
 debug.fb.rgb565 = 0
 debug.sf.hw=1
 debug.composition.type=c2d
-ro.sf.compbypass.enable=1
+ro.sf.compbypass.enable=0
+dev.pm.dyn_samplingrate=1
 #debug.enabletr=true
 debug.qctwa.statusbar = 1
 debug.qctwa.preservebuf = 1
@@ -17,8 +18,10 @@ com.qc.hdmi_out=false
 # board has 3D panel
 #persist.user.panel3D = 1
 
-ro.telephony.ril.v3=facilitylock,signalstrength,icccardstatus,datacall
 rild.libpath=/system/lib/libhtc_ril.so
+# htc v4 ril
+ro.telephony.ril.v3=signalstrength
+ro.ril.enable.garbage.filter=0
 ro.telephony.default_network = 4
 gsm.sim.operator.alpha = sprint
 gsm.sim.operator.numeric = 310120
@@ -66,3 +69,5 @@ ro.phone_storage = 0
 # Make rmt_storage start at init
 ro.emmc = 1
 
+# System property for cabl
+ro.qualcomm.cabl=1
