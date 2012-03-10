@@ -23,7 +23,6 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
-USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
 -include vendor/htc/shooter/BoardConfigVendor.mk
@@ -44,7 +43,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=shooter no_console_
 BOARD_KERNEL_BASE := 0x48000000
 BOARD_KERNEL_PAGE_SIZE := 2048 
 
-#BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := shooter
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := shooter
 #BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 #BOARD_HAVE_SQN_WIMAX := true
