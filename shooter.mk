@@ -137,6 +137,8 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
     device/htc/shooter/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw 
 
+# QC thermald config
+PRODUCT_COPY_FILES += device/htc/shooter/prebuilt/thermald.conf:system/etc/thermald.conf
 
 ## we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -173,6 +175,9 @@ $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
 
 # common msm8660 configs
 $(call inherit-product, device/htc/msm8660-common/msm8660.mk)
+
+PRODUCT_COPY_FILES += \
+     device/htc/shooter/media_profiles.xml:system/etc/media_profiles.xml
 
 ## media profiles and capabilities spec
 $(call inherit-product, device/htc/shooter/media_a1026.mk)
