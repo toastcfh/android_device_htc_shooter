@@ -196,9 +196,9 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/sequansd_app.xml:/system/etc/wimax/sequansd/sequansd_app.xml \\
     vendor/htc/__DEVICE__/proprietary/wimaxDhcp.conf:/system/etc/wimax/dhcp/wimaxDhcp.conf \\
     vendor/htc/__DEVICE__/proprietary/ip:/system/bin/ip \\
-    vendor/htc/__DEVICE__/proprietary/wimax.jar:/system/framework/wimax.jar
-    vendor/htc/__DEVICE__/proprietary/3D_calibration:/system/bin/3D_calibration
-    vendor/htc/__DEVICE__/proprietary/3D_calibration_main:/system/bin/3D_calibration_main
+    vendor/htc/__DEVICE__/proprietary/wimax.jar:/system/framework/wimax.jar \\
+    vendor/htc/__DEVICE__/proprietary/3D_calibration:/system/bin/3D_calibration \\
+    vendor/htc/__DEVICE__/proprietary/3D_calibration_main:/system/bin/3D_calibration_main \\
     vendor/htc/__DEVICE__/proprietary/wimaxDaemon:/system/bin/wimaxDaemon
 EOF
 
