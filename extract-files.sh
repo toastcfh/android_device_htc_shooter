@@ -32,6 +32,7 @@ adb pull /system/lib/libaudcal.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libacdbmapper.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libC2D2.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libcamerapp.so ../../../vendor/htc/$DEVICE/proprietary
+adb pull /system/lib/libcameraSP.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libcameraface.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libdll.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libdiag.so ../../../vendor/htc/$DEVICE/proprietary
@@ -117,6 +118,7 @@ adb pull /system/bin/wimaxDaemon ../../../vendor/htc/$DEVICE/proprietary
 PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/camera.default.so:obj/lib/hw/camera.default.so \\
     vendor/htc/__DEVICE__/proprietary/libaudioalsa.so:obj/lib/libaudioalsa.so \\
+    vendor/htc/__DEVICE__/proprietary/libacdbloader.so:obj/lib/libacdbloader.so \\
     vendor/htc/__DEVICE__/proprietary/libacdbmapper.so:obj/lib/libacdbmapper.so \\
     vendor/htc/__DEVICE__/proprietary/libv8.so:obj/lib/libv8.so
     
@@ -135,8 +137,10 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/libaudioalsa.so:/system/lib/libaudioalsa.so \\
     vendor/htc/__DEVICE__/proprietary/libaudcal.so:/system/lib/libaudcal.so \\
     vendor/htc/__DEVICE__/proprietary/libacdbmapper.so:system/lib/libacdbmapper.so \\
+    vendor/htc/__DEVICE__/proprietary/libacdbloader.so:system/lib/libacdbloader.so \\
     vendor/htc/__DEVICE__/proprietary/libC2D2.so:/system/lib/libC2D2.so \\
     vendor/htc/__DEVICE__/proprietary/libcamerapp.so:/system/lib/libcamerapp.so \\
+    vendor/htc/__DEVICE__/proprietary/libcameraSP.so:/system/lib/libcameraSP.so \\
     vendor/htc/__DEVICE__/proprietary/libcameraface.so:/system/lib/libcameraface.so \\
     vendor/htc/__DEVICE__/proprietary/libdll.so:/system/lib/libdll.so \\
     vendor/htc/__DEVICE__/proprietary/libdiag.so:/system/lib/libdiag.so \\
