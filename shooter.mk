@@ -57,7 +57,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ## Goo.im properties
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.goo.developerid=agrabren \
-	ro.goo.version=1 \
+	ro.goo.version=2 \
 	ro.goo.rom=CM9-DevilToast
 
 ## misc

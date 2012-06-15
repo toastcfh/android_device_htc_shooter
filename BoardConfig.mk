@@ -74,10 +74,7 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 # Try to build the kernel
-TARGET_KERNEL_VERSION := 3.0
-
 TARGET_KERNEL_CONFIG := shooter_defconfig
-TARGET_KERNEL_SOURCE := kernel/htc/shooter-$(TARGET_KERNEL_VERSION)
 TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
 
 TARGET_RECOVERY_INITRC := device/htc/shooter/recovery/init.rc
