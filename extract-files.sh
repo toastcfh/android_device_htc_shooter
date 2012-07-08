@@ -91,10 +91,12 @@ adb pull /system/bin/sound8x60 ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/etc/wimax/sequansd/DefaultTree.xml ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/etc/wimax/sequansd/sequansd_app.xml ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/etc/wimax/dhcp/wimaxDhcp.conf ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/ip ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/framework/wimax.jar ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/bin/3D_calibration ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/bin/3D_calibration_main ../../../vendor/htc/$DEVICE/proprietary
+adb pull /system/bin/dmagent ../../../vendor/htc/$DEVICE/proprietary
+adb pull /system/lib/libdmtree.so ../../../vendor/htc/$DEVICE/proprietary
+adb pull /system/lib/libhtcdm.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/bin/wimaxDaemon ../../../vendor/htc/$DEVICE/proprietary
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g > ../../../vendor/htc/$DEVICE/$DEVICE-vendor-blobs.mk
@@ -199,10 +201,12 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/DefaultTree.xml:/system/etc/wimax/sequansd/DefaultTree.xml \\
     vendor/htc/__DEVICE__/proprietary/sequansd_app.xml:/system/etc/wimax/sequansd/sequansd_app.xml \\
     vendor/htc/__DEVICE__/proprietary/wimaxDhcp.conf:/system/etc/wimax/dhcp/wimaxDhcp.conf \\
-    vendor/htc/__DEVICE__/proprietary/ip:/system/bin/ip \\
     vendor/htc/__DEVICE__/proprietary/wimax.jar:/system/framework/wimax.jar \\
     vendor/htc/__DEVICE__/proprietary/3D_calibration:/system/bin/3D_calibration \\
     vendor/htc/__DEVICE__/proprietary/3D_calibration_main:/system/bin/3D_calibration_main \\
+    vendor/htc/__DEVICE__/proprietary/libhtcdm.so:/system/lib/libhtcdm.so \\
+    vendor/htc/__DEVICE__/proprietary/libdmtree.so:/system/lib/libdmtree.so \\
+    vendor/htc/__DEVICE__/proprietary/dmagent:/system/bin/dmagent \\
     vendor/htc/__DEVICE__/proprietary/wimaxDaemon:/system/bin/wimaxDaemon
 EOF
 
