@@ -20,6 +20,11 @@
 # definition file).
 #
 
+
+# Declare which version of the kernel to use
+KERNEL_VERSION := git
+
+
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
@@ -42,10 +47,10 @@ BOARD_KERNEL_PAGE_SIZE := 2048
 
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := shooter
 
-COMMON_GLOBAL_CFLAGS += -DQCOM_ROTATOR_KERNEL_FORMATS
+COMMON_GLOBAL_CFLAGS += -DQCOM_ROTATOR_KERNEL_FORMATS -DBOARD_HAVE_SQN_WIMAX
 TARGET_USES_OVERLAY := true
 
-#BOARD_HAVE_SQN_WIMAX := true
+BOARD_HAVE_SQN_WIMAX := true
 
 # cat /proc/emmc
 #dev:        size     erasesize name
@@ -74,8 +79,12 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 # Try to build the kernel
+ifneq ($(KERNEL_VERSION),htc)
 TARGET_KERNEL_CONFIG := shooter_defconfig
 TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
+else
+TARGET_PREBUILT_KERNEL := device/htc/shooter/htc-3.0-zImage
+endif
 
 TARGET_RECOVERY_INITRC := device/htc/shooter/recovery/init.rc
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1

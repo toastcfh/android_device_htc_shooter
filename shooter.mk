@@ -36,13 +36,27 @@ PRODUCT_COPY_FILES += \
 ## ramdisk stuffs
 PRODUCT_COPY_FILES += \
     device/htc/shooter/prebuilt/init:root/init \
-    device/htc/shooter/init.shooter.rc:root/init.shooter.rc \
     device/htc/shooter/init.shooter.usb.rc:root/init.shooter.usb.rc \
     device/htc/shooter/ueventd.shooter.rc:root/ueventd.shooter.rc
+
+ifneq ($(KERNEL_VERSION),htc)
+PRODUCT_COPY_FILES += device/htc/shooter/init.shooter.rc:root/init.shooter.rc
+else
+PRODUCT_COPY_FILES += device/htc/shooter/init.shooter.htc.rc:root/init.shooter.rc
+endif
 
 # BCM4329 BT Firmware
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
+
+# Kernel Modules
+ifeq ($(KERNEL_VERSION),htc)
+PRODUCT_COPY_FILES += \
+    device/htc/shooter/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
+    device/htc/shooter/modules/sequans_sdio.ko:system/lib/modules/sequans_sdio.ko \
+    device/htc/shooter/modules/wimaxuart.ko:system/lib/modules/wimaxuart.ko \
+    device/htc/shooter/modules/wimaxdbg.ko:system/lib/modules/wimaxdbg.ko
+endif
 
 ## (2) Also get non-open-source specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
@@ -57,7 +71,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ## Goo.im properties
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.goo.developerid=agrabren \
-	ro.goo.version=2 \
+	ro.goo.version=7 \
 	ro.goo.rom=CM9-DevilToast
 
 ## misc
@@ -155,7 +169,14 @@ PRODUCT_COPY_FILES += device/htc/shooter/prebuilt/thermald.conf:system/etc/therm
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
+# Broadcom Network Firmware
+ifneq ($(KERNEL_VERSION),htc)
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
+else
+PRODUCT_COPY_FILES += \
+    device/htc/shooter/firmware/fw_bcm4329.bin:system/vendor/firmware/fw_bcm4329.bin \
+    device/htc/shooter/firmware/fw_bcm4329_apsta.bin:system/vendor/firmware/fw_bcm4329_apsta.bin
+endif
 
 # misc
 PRODUCT_COPY_FILES += \
@@ -183,3 +204,4 @@ $(call inherit-product, build/target/product/full_base_telephony.mk)
 
 PRODUCT_NAME := htc_shooter
 PRODUCT_DEVICE := shooter
+

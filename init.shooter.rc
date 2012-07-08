@@ -78,7 +78,13 @@ on post-fs-data
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
 
+    #wimax
+    mkdir /data/misc/wimax 0770 wimax wimax
+    mkdir /data/misc/wimax/sockets 0770  wimax wimax
+    mkdir /data/wimax/ 0770  system system
+    mkdir /data/wimax/log 0770  system system
     mkdir /data/audio 0770 media audio
+
     # Enable the setgid bit on the directory
     chmod 2770 /data/audio
 
@@ -244,6 +250,12 @@ service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
     disabled
     oneshot
 
+service dhcpWimax /system/bin/dhcpcd -ABKL -f /etc/wimax/dhcp/wimaxDhcp.conf  wimax0
+    class main
+    class late_start
+    disabled
+    oneshot
+
 service iprenew_wlan0 /system/bin/dhcpcd -n
     class late_start
     disabled
@@ -279,6 +291,85 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p26 /dev/block/mmc
     class core
     user root
 
+service sequansd /system/bin/sequansd /etc/wimax/sequansd/sequansd_app.xml
+    user root
+    group root inet
+    socket sequansd_0 dgram 660 root root
+    disabled
+    oneshot
+
+service wimaxDhcpRelease /system/bin/wimaxDhcpRelease
+    class main
+    user root
+    group root
+    disabled
+    oneshot
+
+service wimaxDhcpRenew /system/bin/wimaxDhcpRenew
+    class main
+    user root
+    group root
+    disabled
+    oneshot
+
+service wimaxAddRoute /system/bin/wimaxAddRoute
+    class main
+    user root
+    group root
+    disabled
+    oneshot
+
+service wimaxDumpLogcat /system/bin/wimaxDumpLogcat /data/wimax/log
+    user root
+    group root
+    disabled
+    oneshot
+
+service wimaxDumpKmsg /system/bin/wimaxDumpKmsg /data/wimax/log
+    user root
+    group root
+    disabled
+    oneshot
+
+service wimaxDumpLastKmsg /system/bin/wimaxDumpLastKmsg /data/wimax/log
+    user root
+    group root
+    disabled
+    oneshot
+
+service wmxCfgItf /system/bin/wimaxConfigInterface
+    user root
+    group root
+    disabled
+    oneshot
+
+service wimaxDaemon /system/bin/wimaxDaemon
+    user root
+    group root
+
+# wimax_mtd daemon
+service wimax_mtd /system/bin/wimax_mtd
+    user root
+    group root
+    oneshot
+
+# setWMXPropd daemon
+service setWMXPropd /system/bin/setWiMAXPropDaemond
+    user root
+    group root
+    oneshot
+
+# getWMXPropd daemon
+service getWMXPropd /system/bin/getWiMAXPropDaemond
+    user root
+    group root
+    oneshot
+
+service dmagent /system/bin/dmagent -N -P19 -VSY
+    socket dmagent stream 660 root radio
+    user root
+    group radio cache inet misc
+ 
 service modem /system/bin/wireless_modem
     user system
     group system radio
@@ -355,5 +446,4 @@ service netmgrd /system/bin/netmgrd
 
 on property:sys.radio.shutdown=true
    exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
-   user root
-   group root
+
