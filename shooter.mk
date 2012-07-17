@@ -71,7 +71,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ## Goo.im properties
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.goo.developerid=agrabren \
-	ro.goo.version=7 \
+	ro.goo.version=8 \
 	ro.goo.rom=CM9-DevilToast
 
 ## misc
@@ -170,13 +170,9 @@ PRODUCT_COPY_FILES += device/htc/shooter/prebuilt/thermald.conf:system/etc/therm
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Broadcom Network Firmware
-ifneq ($(KERNEL_VERSION),htc)
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
-else
 PRODUCT_COPY_FILES += \
     device/htc/shooter/firmware/fw_bcm4329.bin:system/vendor/firmware/fw_bcm4329.bin \
     device/htc/shooter/firmware/fw_bcm4329_apsta.bin:system/vendor/firmware/fw_bcm4329_apsta.bin
-endif
 
 # misc
 PRODUCT_COPY_FILES += \
@@ -185,7 +181,10 @@ PRODUCT_COPY_FILES += \
 
 ## HAX
 PRODUCT_COPY_FILES += \
-    device/htc/shooter/prebuilt/libcryp98.so:system/lib/libcryp98.so
+    device/htc/shooter/prebuilt/libcryp98.so:system/lib/libcryp98.so \
+    device/htc/shooter/prebuilt/libdmtree.so:system/lib/libdmtree.so \
+    device/htc/shooter/prebuilt/sequansd:system/bin/sequansd \
+    device/htc/shooter/prebuilt/wimax-api.jar:system/framework/wimax-api.jar
 
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
 
