@@ -39,24 +39,11 @@ PRODUCT_COPY_FILES += \
     device/htc/shooter/init.shooter.usb.rc:root/init.shooter.usb.rc \
     device/htc/shooter/ueventd.shooter.rc:root/ueventd.shooter.rc
 
-ifneq ($(KERNEL_VERSION),htc)
 PRODUCT_COPY_FILES += device/htc/shooter/init.shooter.rc:root/init.shooter.rc
-else
-PRODUCT_COPY_FILES += device/htc/shooter/init.shooter.htc.rc:root/init.shooter.rc
-endif
 
 # BCM4329 BT Firmware
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
-
-# Kernel Modules
-ifeq ($(KERNEL_VERSION),htc)
-PRODUCT_COPY_FILES += \
-    device/htc/shooter/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
-    device/htc/shooter/modules/sequans_sdio.ko:system/lib/modules/sequans_sdio.ko \
-    device/htc/shooter/modules/wimaxuart.ko:system/lib/modules/wimaxuart.ko \
-    device/htc/shooter/modules/wimaxdbg.ko:system/lib/modules/wimaxdbg.ko
-endif
 
 ## (2) Also get non-open-source specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/shooter/shooter-vendor.mk)
@@ -67,12 +54,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.com.google.locationfeatures=1 \
 	ro.cdma.home.operator.numeric=310120 \
 	ro.cdma.home.operator.alpha=Sprint
-
-## Goo.im properties
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.goo.developerid=agrabren \
-	ro.goo.version=8 \
-	ro.goo.rom=CM9-DevilToast
 
 ## misc
 PRODUCT_PROPERTY_OVERRIDES += \
