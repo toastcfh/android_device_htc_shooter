@@ -181,11 +181,10 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service dhcpWimax /system/bin/dhcpcd -ABKL -f /etc/wimax/dhcp/wimaxDhcp.conf
+service dhcpWimax /system/bin/dhcpcd -ABKL -f /etc/wimax/dhcp/wimaxDhcp.conf wimax0
     class main
     disabled
     oneshot
-
 
 # bugreport is triggered by the KEY_VOLUMEUP and KEY_VOLUMEDOWN keycodes
 service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
@@ -232,18 +231,21 @@ service sequansd /system/bin/sequansd /etc/wimax/sequansd/sequansd_app.xml
     oneshot
 
 service wimaxDhcpRelease /system/bin/wimaxDhcpRelease
+    class main
     user root
     group root
     disabled
     oneshot
 
 service wimaxDhcpRenew /system/bin/wimaxDhcpRenew
+    class main
     user root
     group root
     disabled
     oneshot
 
 service wimaxAddRoute /system/bin/wimaxAddRoute
+    class main
     user root
     group root
     disabled
@@ -294,6 +296,11 @@ service getWMXPropd /system/bin/getWiMAXPropDaemond
     user root
     group root
     oneshot
+
+service dmagent /system/bin/dmagent -N -P19 -VSY
+    socket dmagent stream 660 root radio
+    user root
+    group radio cache inet misc
 
 service modem /system/bin/wireless_modem
     user system

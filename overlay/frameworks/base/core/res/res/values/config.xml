@@ -141,6 +141,7 @@
     <!-- the 6th element indicates boot-time dependency-met value. -->
     <string-array translatable="false" name="networkAttributes">
         <item>"wifi,1,1,1,-1,true"</item>
+        <item>"wimax,6,6,2,-1,true"</item>
         <item>"mobile,0,0,0,-1,true"</item>
         <item>"mobile_mms,2,0,2,60000,true"</item>
         <item>"mobile_supl,3,0,2,60000,true"</item>
@@ -153,6 +154,7 @@
     <!-- An Array of "[ConnectivityManager connectionType],
          [# simultaneous connection types]"  -->
     <string-array translatable="false" name="radioAttributes">
+        <item>"6,1"</item>
         <item>"1,1"</item>
         <item>"0,1"</item>
         <item>"7,1"</item>
@@ -188,6 +190,7 @@
         <item>0</item>
         <item>1</item>
         <item>5</item>
+        <item>6</item>
         <item>7</item>
     </integer-array>
 
@@ -231,5 +234,18 @@
 
     <!-- The VoiceMail default value is displayed to my own number if it is true -->
     <bool name="config_telephony_use_own_number_for_voicemail">true</bool>
+
+    <!-- Set and Unsets WiMAX -->
+    <bool name="config_wimaxEnabled">true</bool>
+    <!-- Location of the wimax framwork jar location -->
+    <string name="config_wimaxServiceJarLocation">/system/framework/wimax-api.jar</string>
+    <!-- Location of the wimax native library locaiton -->
+    <string name="config_wimaxNativeLibLocation"></string>
+    <!-- Name of the wimax manager class -->
+    <string name="config_wimaxManagerClassname">com.htc.net.wimax.WimaxController</string>
+    <!-- Name of the wimax service class -->
+    <string name="config_wimaxServiceClassname">com.htc.net.wimax.WimaxService</string>
+    <!-- Name of the wimax state tracker clas -->
+    <string name="config_wimaxStateTrackerClassname">com.htc.net.wimax.WimaxStateTracker</string>
 
 </resources>
