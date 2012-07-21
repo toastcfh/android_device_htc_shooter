@@ -103,6 +103,9 @@ on init
     chown bluetooth bluetooth /sys/module/htc_bdaddress/parameters/bdaddress
     setprop ro.bt.bdaddr_path /sys/module/htc_bdaddress/parameters/bdaddress
 
+    # Permissions for touchscreen
+    chmod 0666          /sys/android_touch/unlock
+
     # Permissions for call status and camera LED
     chmod 0666          /sys/camera_led_status/led_ril_status
     chmod 0666          /sys/module/gpio_event/parameters/phone_call_status
