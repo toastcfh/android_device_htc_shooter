@@ -29,6 +29,7 @@ adb pull /system/bin/thermald ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/xbin/wireless_modem ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libaudioalsa.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libaudcal.so ../../../vendor/htc/$DEVICE/proprietary
+adb pull /system/lib/libacdbloader.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libacdbmapper.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libC2D2.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/lib/libcamerapp.so ../../../vendor/htc/$DEVICE/proprietary
@@ -77,26 +78,9 @@ adb pull /system/lib/hw/lights.msm8660.so ../../../vendor/htc/$DEVICE/proprietar
 adb pull /system/lib/hw/sensors.shooter.so ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/bin/logcat2 ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/bin/rmt_storage ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxDumpKmsg ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxDumpLogcat ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/setWiMAXPropDaemond ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimax_mtd ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/getWiMAXPropDaemond ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxDumpLastKmsg ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxDhcpRenew ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxDhcpRelease ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxAddRoute ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxFactoryReset ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxConfigInterface ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/bin/sound8x60 ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/etc/wimax/sequansd/DefaultTree.xml ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/etc/wimax/sequansd/sequansd_app.xml ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/etc/wimax/dhcp/wimaxDhcp.conf ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/bin/3D_calibration ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/bin/3D_calibration_main ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/dmagent ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/lib/libhtcdm.so ../../../vendor/htc/$DEVICE/proprietary
-adb pull /system/bin/wimaxDaemon ../../../vendor/htc/$DEVICE/proprietary
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g > ../../../vendor/htc/$DEVICE/$DEVICE-vendor-blobs.mk
 # Copyright (C) 2010 The Android Open Source Project
@@ -186,26 +170,9 @@ PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/sensors.shooter.so:/system/lib/hw/sensors.shooter.so \\
     vendor/htc/__DEVICE__/proprietary/logcat2:/system/bin/logcat2 \\
     vendor/htc/__DEVICE__/proprietary/rmt_storage:/system/bin/rmt_storage \\
-    vendor/htc/__DEVICE__/proprietary/wimaxDumpKmsg:/system/bin/wimaxDumpKmsg \\
-    vendor/htc/__DEVICE__/proprietary/wimaxDumpLogcat:/system/bin/wimaxDumpLogcat \\
-    vendor/htc/__DEVICE__/proprietary/setWiMAXPropDaemond:/system/bin/setWiMAXPropDaemond \\
-    vendor/htc/__DEVICE__/proprietary/wimax_mtd:/system/bin/wimax_mtd \\
-    vendor/htc/__DEVICE__/proprietary/getWiMAXPropDaemond:/system/bin/getWiMAXPropDaemond \\
-    vendor/htc/__DEVICE__/proprietary/wimaxDumpLastKmsg:/system/bin/wimaxDumpLastKmsg \\
-    vendor/htc/__DEVICE__/proprietary/wimaxDhcpRenew:/system/bin/wimaxDhcpRenew \\
-    vendor/htc/__DEVICE__/proprietary/wimaxDhcpRelease:/system/bin/wimaxDhcpRelease \\
-    vendor/htc/__DEVICE__/proprietary/wimaxAddRoute:/system/bin/wimaxAddRoute \\
-    vendor/htc/__DEVICE__/proprietary/wimaxFactoryReset:/system/bin/wimaxFactoryReset \\
-    vendor/htc/__DEVICE__/proprietary/wimaxConfigInterface:/system/bin/wimaxConfigInterface \\
     vendor/htc/__DEVICE__/proprietary/sound8x60:/system/bin/sound8x60 \\
-    vendor/htc/__DEVICE__/proprietary/DefaultTree.xml:/system/etc/wimax/sequansd/DefaultTree.xml \\
-    vendor/htc/__DEVICE__/proprietary/sequansd_app.xml:/system/etc/wimax/sequansd/sequansd_app.xml \\
-    vendor/htc/__DEVICE__/proprietary/wimaxDhcp.conf:/system/etc/wimax/dhcp/wimaxDhcp.conf \\
     vendor/htc/__DEVICE__/proprietary/3D_calibration:/system/bin/3D_calibration \\
-    vendor/htc/__DEVICE__/proprietary/3D_calibration_main:/system/bin/3D_calibration_main \\
-    vendor/htc/__DEVICE__/proprietary/libhtcdm.so:/system/lib/libhtcdm.so \\
-    vendor/htc/__DEVICE__/proprietary/dmagent:/system/bin/dmagent \\
-    vendor/htc/__DEVICE__/proprietary/wimaxDaemon:/system/bin/wimaxDaemon
+    vendor/htc/__DEVICE__/proprietary/3D_calibration_main:/system/bin/3D_calibration_main
 EOF
 
 ./setup-makefiles.sh

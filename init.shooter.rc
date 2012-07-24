@@ -82,6 +82,8 @@ on post-fs-data
     mkdir /data/misc/wimax/sockets 0770  wimax wimax
     mkdir /data/wimax/ 0770  system system
     mkdir /data/wimax/log 0770  system system
+
+    # Audio
     mkdir /data/audio 0770 media audio
 
     # Enable the setgid bit on the directory
