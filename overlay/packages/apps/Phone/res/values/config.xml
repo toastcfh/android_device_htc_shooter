@@ -14,9 +14,8 @@
      limitations under the License.
 -->
 
-<!-- Tuna-specific phone app resources. -->
+<!-- Shooter-specific phone app resources. -->
 <resources>
-
     <!-- Flag indicating if the tty is enabled -->
     <bool name="tty_enabled">true</bool>
 
@@ -27,4 +26,7 @@
 
     <!-- This device implements a noise suppression device for in call audio-->
     <bool name="has_in_call_noise_suppression">true</bool>
+    
+    <!-- Sprint Message Wait Indicator Quirk -->
+    <bool name="sprint_mwi_quirk">true</bool>
 </resources>
